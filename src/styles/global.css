@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100;
+  @apply overflow-hidden;
+  @apply h-screen;
+}
+
+h1 {
+  @apply text-2xl font-semibold block;
+}
+
+.notification-box {
+  @apply text-gray-600 text-sm;
+}
+
+.ant-btn-icon-only {
+  @apply flex items-center justify-center;
+}
+
+.ant-tree-draggable-icon {
+  @apply hidden;
+}
+
+.ant-tree-treenode {
+  @apply h-8 flex w-full hover:bg-gray-100;
+  align-items: center !important;
+}
+
+.ant-tree-switcher {
+  @apply flex items-center justify-center;
+}
+
+.ant-btn-primary {
+  @apply bg-blue-600 hover:bg-blue-500 font-medium shadow-none;
+}
+
+.ant-btn.ant-btn-primary:disabled{
+  background-color: theme('colors.blue.300');
+  color: theme('colors.white');
+}
+
+.ant-btn.ant-btn-sm{
+  padding: 2px 16px;
+  height: auto;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #0a38c2;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.ant-input-lg {
+  @apply text-sm;
+}
+
+:where(.css-dev-only-do-not-override-2hua9e).ant-picker-large .ant-picker-input > input {
+  font-size: 0.875rem !important;
+}
+
+.ant-picker {
+  @apply h-full;
+}
+
+.ant-picker-input {
+  @apply text-sm font-medium;
+}
+
+.api-dropdown .ant-btn-default {
+  @apply border-gray-300 rounded-r-none pr-2 font-medium;
+}
+
+.api-dropdown .ant-input {
+  @apply rounded-l-none border-l-0;
+}
+
+.ant-input {
+  @apply border-gray-300;
+}
+
+.ant-dropdown-trigger {
+  @apply border-gray-300 shadow-none;
+}
+
+.ant-dropdown-menu-title-content {
+  @apply capitalize;
+}
+
+.env-dropdown-production .ant-btn-default {
+  @apply border-violet-700 bg-[#f3e8ff] text-violet-700 hover:bg-violet-700;
+}
+
+.env-dropdown-production .ant-btn-default:hover {
+  color: #fff !important;
+  border-color: #7e3af2 !important;
+}
+
+.env-dropdown-sandbox .ant-btn-default {
+  @apply border-blue-600 bg-blue-100 text-blue-600 hover:bg-blue-600;
+}
+
+.env-dropdown-sandbox .ant-btn-default:hover {
+  color: #fff !important;
+  border-color: #0a38c2 !important;
+}
+
+.env-dropdown-development .ant-btn-default {
+  @apply border-[#be185d] bg-[#fce7f3] text-[#be185d] hover:bg-[#be185d];
+}
+
+.env-dropdown-development .ant-btn-default:hover {
+  color: #fff !important;
+  border-color: #be185d !important;
+}
+
+.cm-content {
+  @apply bg-white rounded w-full text-gray-800 flex-1;
+  background-color: transparent;
+}
+
+.cm-editor {
+  @apply border border-gray-300 rounded text-[0.8rem] overflow-hidden hover:overflow-auto;
+  background-color: transparent;
+}
+
+.cm-editor-flat {
+  @apply border-0 rounded-none;
+}
+
+.cm-editor-api-call {
+  @apply border-l-0 rounded-tl-none rounded-bl-none rounded-tr-md rounded-br-md h-[38px] w-full pt-[5px] text-sm;
+}
+
+.cm-scroller {
+  @apply overflow-y-hidden hover:overflow-y-auto !overflow-visible;
+}
+
+.cm-focused {
+  outline-color: transparent !important;
+}
+
+.cm-placeholder {
+  color: #8795a1 !important;
+}
+
+.cm-matchingBracket {
+  @apply bg-[#e5ecff];
+}
+
+.cm-gutters {
+  @apply !border-none w-fit;
+  background: transparent !important;
+}
+
+.cm-editor .cm-content :is(div, span) {
+  font-family: 'Source Code Pro', monospace !important;
+  font-weight: 500;
+}
+
+.code-tag {
+  @apply rounded;
+  padding: 0.1rem;
+}
+
+.cm-completionDetail {
+  @apply ml-0 float-right;
+}
+
+/* This must be !important because they need to defeat
+ * all the others if they are used as parameters of Formulas */
+.code-editor-hl-env-var,
+.code-editor-hl-env-var span {
+  @apply !text-[#804af1] !bg-[#ece4fd];
+}
+
+.code-editor-hl-entity,
+.code-editor-hl-entity span {
+  @apply !text-[#0a38c2] !bg-[#e5ecff];
+}
+
+.code-editor-config-var,
+.code-editor-config-var span {
+  @apply !text-[#a626a4] !bg-[#fae8ff];
+}
+
+.code-editor-temp-var,
+.code-editor-temp-var span {
+  @apply !text-[#d97706] !bg-[#fef3c7];
+}
+
+.code-editor-hl-formula,
+.code-editor-hl-formula span {
+  @apply text-[#15803d] bg-[#dcfce7];
+}
+/* REACT QUERY*/
+.svg-font-color svg > path {
+  fill: var(--ifm-font-color-base);
+}
+
+.queryBuilder {
+  @apply w-full;
+}
+
+.queryBuilder .ruleGroup {
+  @apply flex flex-col gap-4;
+}
+
+.queryBuilder .ruleGroup .rule {
+  @apply flex gap-2;
+}
+
+.queryBuilder .ruleGroup .ruleGroup-header {
+  @apply flex order-last items-center;
+}
+
+.queryBuilder .ruleGroup .ruleGroup-body {
+  @apply flex flex-col gap-2;
+}
+
+.queryBuilder .ruleGroup .ruleGroup-body .ruleGroup {
+  @apply p-3 border border-gray-400 rounded;
+}
+
+.custom-combinator-selector .ant-select-selection-item {
+  color: #1677ff;
+}
+
+.code-editor-hl-interpolations,
+.code-editor-hl-interpolations span {
+  @apply !text-[#0a38c2] !bg-[#e5ecff];
+}
+
+.queryBuilder
+  .ruleGroup
+  .ruleGroup-body
+  .ant-radio-group-solid
+  :where(.css-dev-only-do-not-override-12bs3dt).ant-radio-button-wrapper-checked:not(
+    .ant-radio-button-wrapper-disabled
+  ) {
+  background-color: #1677ff;
+}
+/* Custom Execution Selector Style */
+.customExecutionFilter .ant-select-selector{
+  border-color: #dce6ee!important;
+  border-radius: 0.25rem;
+}

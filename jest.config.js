@@ -1,0 +1,30 @@
+/* eslint-disable no-undef */
+module.exports = {
+  moduleDirectories: ['node_modules', 'src'],
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.[jt]sx?$': 'babel-jest',
+  },
+  moduleNameMapper: {
+    '\\.svg$': '<rootDir>/__mocks__/svgMock.ts',
+    '\\.(css|less|sass|scss)$': '<rootDir>/__mocks__/styleMock.ts',
+    '^@iconscout/react-unicons/icons/(.*)$': '<rootDir>/__mocks__/svgMock.ts',
+    '^@/(.*)$': '<rootDir>/$1',
+    '^src/(.*)$': '<rootDir>/src/$1',
+    '^@assets/(.*)$': '<rootDir>/src/assets/$1',
+    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@constants/(.*)$': '<rootDir>/src/constants/$1',
+    '^@contexts/(.*)$': '<rootDir>/src/contexts/$1',
+    '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
+    '^@layouts/(.*)$': '<rootDir>/src/layouts/$1',
+    '^@pages/(.*)$': '<rootDir>/src/pages/$1',
+    '^@services/(.*)$': '<rootDir>/src/services/$1',
+    '^@styles/(.*)$': '<rootDir>/src/styles/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+    'react-dnd': 'react-dnd-cjs',
+    'react-dnd-html5-backend': 'react-dnd-html5-backend-cjs',
+    'dnd-core': 'dnd-core-cjs',
+  },
+  setupFilesAfterEnv: ['./jest.setup.js'],
+  setupFiles: ['./__mocks__/generalMocks.ts'],
+};
