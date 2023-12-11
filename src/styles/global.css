@@ -34,17 +34,7 @@ h1 {
 }
 
 .ant-btn-primary {
-  @apply bg-blue-600 hover:bg-blue-500 font-medium shadow-none;
-}
-
-.ant-btn.ant-btn-primary:disabled{
-  background-color: theme('colors.blue.300');
-  color: theme('colors.white');
-}
-
-.ant-btn.ant-btn-sm{
-  padding: 2px 16px;
-  height: auto;
+  @apply bg-blue-600 hover:bg-blue-500 font-medium shadow-none !important;
 }
 
 .lds-ripple {
@@ -291,3 +281,30 @@ h1 {
   border-color: #dce6ee!important;
   border-radius: 0.25rem;
 }
+
+/**
+ * START Design system governance
+ */
+
+.ant-modal .ant-modal-content{
+  padding: 0;
+}
+
+.ant-modal .ant-modal-close{
+  top: 8px;
+  inset-inline-end: 16px;  
+}
+
+.ant-btn.ant-btn-primary:disabled{
+  background-color: theme('colors.blue.300');
+  color: theme('colors.white');
+}
+
+.ant-btn.ant-btn-sm{
+  padding: 2px 16px;
+  height: auto;
+}
+
+/**
+ * END Design system governance
+ */

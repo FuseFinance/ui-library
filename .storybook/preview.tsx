@@ -20,7 +20,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <ConfigProvider theme={{ token: { colorPrimary: '#0A38C2' } }}>
+      <ConfigProvider theme={{ token: { colorText: '#002140', colorBorder: '#C9D3E0' } }}>
         <GlobalStyle/>
         <Story />
       </ConfigProvider>

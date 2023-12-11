@@ -1,0 +1,17 @@
+export default {
+  vin: '',
+  found: '',
+  source: '',
+  timestamp: '',
+  total_loss: '',
+  accidents_num: '',
+  odometer_check: '',
+  accident_damage: '',
+  not_found_reason: '',
+  airbag_deployment: '',
+  structural_damage: '',
+  manufacturer_recall: '',
+  title_history_details: '',
+  accident_damage_details: '',
+  title_history_guaranteed: '',
+};

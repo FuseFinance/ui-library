@@ -1,0 +1,18 @@
+export default {
+  id: '',
+  found: '',
+  source: '',
+  cache_id: '',
+  timestamp: '',
+  created_at: '',
+  deleted_at: '',
+  updated_at: '',
+  vehicle_id: '',
+  value_retail: '',
+  value_wholesale: '',
+  not_found_reason: '',
+  value_retail_option_adj: '',
+  value_retail_mileage_adj: '',
+  value_wholesale_option_adj: '',
+  value_wholesale_mileage_adj: '',
+};

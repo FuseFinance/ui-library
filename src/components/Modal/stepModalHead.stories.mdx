@@ -1,0 +1,26 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import StepModalHead from '@components/Modal/stepModalHead';
+import { IconList } from '@/src/components/Icons/types';
+
+<Meta title="Components/Modal/Step Modal Head Main" component={StepModalHead} />
+
+# Icon Personalized
+## Icon Personalized Import
+
+```jsx
+
+import StepModalHead from '@components/Modal/stepModalHead';
+import { IconList } from '@/src/components/Icons/types';
+
+```
+
+## Icon Personalized Example
+<Canvas>
+  <StepModalHead 
+    onLabelChange = {console.log}
+    icon = {IconList.Fx}
+    label = 'test'
+   />
+</Canvas>
+
+
