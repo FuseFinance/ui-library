@@ -10,9 +10,9 @@ const StepModalHead = ({
 }) => {
   return (
     <div className="flex items-center gap-x-3">
-      <Icon icon={icon} />
+      <Icon fill='#0A38C2' icon={icon} />
 
-      <EditableText canEdit={true} label={label} onLabelChange={onLabelChange} />
+      <EditableText $size='base' strongText='semibold' canEdit={true} label={label} onLabelChange={onLabelChange} />
       
     </div>
   );

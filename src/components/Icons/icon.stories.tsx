@@ -21,7 +21,10 @@ export default {
     },
     fill: {
       control: 'color'
-    },    
+    },
+    hoverFill: {
+      control: 'color'
+    } 
   },
 } as Meta;
 
@@ -31,9 +34,9 @@ export const IcionPersonalized = Template.bind({});
 IcionPersonalized.args = {
   testId:"my-id",
   icon:"Trash",
-  fill:"#000",
   cursor:"pointer",
   width:"1.2rem",
   height:"1.4rem",
-  onClick:{handleClick}
+  onClick:{handleClick},
+  hoverFill:""
 };

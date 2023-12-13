@@ -72,4 +72,5 @@ export interface IProps {
   cursor?: string;
   onClick?: () => void;
   testId?: string;
-}
+  hoverFill?: string;
+} 
