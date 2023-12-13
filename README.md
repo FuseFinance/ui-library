@@ -1,4 +1,4 @@
-# workflows-web
+# ui-library
 
 ## Install project and StoryBook
 

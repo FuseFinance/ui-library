@@ -1,0 +1,25 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Divider } from 'antd';
+
+<Meta title="Components/Divider/Divider" component={Divider} />
+
+  
+# Separator
+## Separator Import
+
+```jsx
+
+import { Divider } from 'antd';
+
+
+```
+
+## Separator without text
+<Canvas>
+  <Divider style={{margin:0}}/>
+</Canvas>
+
+## Separator with text
+<Canvas>
+  <Divider style={{margin:0}} orientation="left">My Text</Divider>
+</Canvas>

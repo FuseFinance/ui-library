@@ -1,0 +1,22 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import EditableText from '@components/EditableText/editableText';
+
+<Meta title="Components/FormAndInput/Editable Text Main" component={EditableText} />
+
+  
+# Editable Text
+
+## Import Editable Text
+
+```jsx
+import EditableText from '@components/EditableText/editableText';
+
+```
+
+## Example Editable Text
+<Canvas>
+  <EditableText 
+  label = 'Example'
+  onLabelChange = {console.log}
+  canEdit = {true} />
+</Canvas>

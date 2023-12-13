@@ -1,0 +1,31 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import Icon from '@/src/components/Icons';
+import { IconList } from '@/src/components/Icons/types';
+
+<Meta title="Components/Icon/Icon Personalized" component={Icon} />
+
+# Icon Personalized
+## Icon Personalized Import
+
+```jsx
+
+import Icon from '@/src/components/Icons';
+import { IconList } from '@/src/components/Icons/types';
+
+```
+
+## Icon Personalized Example
+<Canvas>
+  <Icon 
+  testId="my-id"
+  icon={IconList.Trash}
+  fill="#000"
+  cursor="pointer"
+  width="1.2rem"
+  height="1.4rem"
+  onClick={console.log}  
+  
+   />
+</Canvas>
+
+

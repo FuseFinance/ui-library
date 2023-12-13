@@ -1,0 +1,15 @@
+export default {
+  id: '',
+  vin: '',
+  body: '',
+  make: '',
+  trim: '',
+  year: '',
+  model: '',
+  mileage: '',
+  condition: '',
+  created_at: '',
+  deleted_at: '',
+  updated_at: '',
+  application_id: '',
+};
