@@ -18,15 +18,18 @@ export default {
 const Template = (args) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [listBranch, setBranch] = useState([{
     id: 1,
     label: "Branch 1",
+    isActiveInput: false
   }]);
 
   const addBranch = (e) => {
     setBranch([...listBranch, {
       id: listBranch.length + 1, 
-      label: "Branch " + (listBranch.length + 1) 
+      label: "Branch " + (listBranch.length + 1),
+      isActiveInput: false
     }]);
     action('add branch')(e);
   };
@@ -38,8 +41,27 @@ const Template = (args) => {
     action('remove branch')('newListBranh');
   };
 
-  const onLabelChange = (e) => {
+  const handleActiveInput = (branchId) => {
+    var newListBranh = [ ... listBranch]
+
+    newListBranh[branchId].isActiveInput = true;
+
+    setBranch(newListBranh);
+
+    action('remove branch')('newListBranh');
+  };  
+
+
+  const onLabelChangeHead = (e) => {
     action('On label change')(e);
+  }; 
+
+  const onLabelChangeContent = (branchId) => {
+    var newListBranh = [ ... listBranch]
+
+    newListBranh[branchId].isActiveInput = false;
+
+    setBranch(newListBranh);
   }; 
 
   const stepSave = (e) => {
@@ -62,33 +84,41 @@ const Template = (args) => {
       Open Modal
     </Button>
     <Modal title={null} footer={null} open={isModalOpen} onCancel={handleCancel}>
-      <div className="head-split-path pl-4 pr-4 pt-2 pb-2">
-        <StepModalHead onLabelChange={onLabelChange} icon={IconList.Fx} label='Split Path' />
+      <div className="head-split-path pt-1 pb-1 pl-4 pr-12">
+        <StepModalHead onLabelChange={onLabelChangeHead} icon={IconList.Branch} label='Split Path' />
       </div>
       <Divider style={{margin:0}}></Divider>
-      <div className="content-split-path pl-4 pr-4 pt-2 pb-2 grid gap-y-4">
+      <div className="content-split-path pt-2">
         {
+
           listBranch.map(function(branch, index) { 
+
+            var styleConentClass = 'conent-code-input pl-4 pr-4 pt-1 pb-2';
+
+            styleConentClass += branch.isActiveInput ? " bg-gray-50" : "";
+
             return (
-            <div key={branch.id} className="conent-code-input">
-              <div className="pb-2">
-                <EditableText label={branch.label} onLabelChange={console.log} canEdit={true} />
-              </div>
-              <div className='flex'>
-                <div className='flex-grow'>
-                  <CodeEditor defaultValue="" onChange={console.log} />
+            <div key={branch.id} className={styleConentClass}>
+              <div>
+                <EditableText onSpanClick={() => handleActiveInput(index)} $size='md' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
+              </div> 
+              <div className="flex">
+                <div onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
+                  <CodeEditor onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
                 </div>
-                <Icon icon={IconList.Trash} fill="#000" cursor="pointer" width="1.2rem" height="1.4rem" onClick={() => removeBranch(index)} />
+                <div className="mt-auto mb-auto">
+                  <Icon icon={IconList.Trash} hoverFill="#0A38C2" fill="#9CA3AF" cursor="pointer" width="1.2rem" height="1.4rem" onClick={() => removeBranch(index)} />
+                </div>
               </div>
             </div>
             ) 
           })
         }
       </div>
-      <div className="footer-split-path pl-4 pr-4 pt-2 pb-2 flex justify-between">
-        <Button type="default" onClick={addBranch} >{"+ Branch"}</Button>
+      <div className="footer-split-path pl-4 pr-4 pt-4 pb-2 flex justify-between">
+        <Button size='small' type="default" onClick={addBranch} >{"+ Branch"}</Button>
 
-        <Button type="primary" onClick={stepSave} >{"Save"}</Button>
+        <Button size='small' type="primary" onClick={stepSave} >{"Save"}</Button>
       </div>
     </Modal>
     </>)

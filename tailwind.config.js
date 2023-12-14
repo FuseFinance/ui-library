@@ -8,10 +8,15 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
-      },
+      },  
       maxWidth: {
         xxs: '15rem',
       },
+      spacing: {
+        '0.8': '0.063rem',        
+        '0.9': '0.125rem',
+      }      
+
     },
     colors: {
       black: '#000000',
@@ -20,7 +25,7 @@ module.exports = {
         400: '#C54500',
       },
       blue: {
-        50: '#f2f6ff',
+        50: '#F8FAFC',
         100: '#E5ECFF',
         200: '#CED9FC',
         300: '#A1B7F9',
@@ -32,10 +37,11 @@ module.exports = {
         900: '#002140',
       },
       gray: {
-        100: '#F9FAFC',
-        200: '#F2F6FA',
+        50: '#F9FAFC',
+        100: '#F1F5F9',
+        200: '#94A3B8',
         300: '#DCE6EE',
-        400: '#C9D3E0',
+        400: '#9CA3AF',
         500: '#ADB8C6',
         600: '#8795A1',
         700: '#667481',

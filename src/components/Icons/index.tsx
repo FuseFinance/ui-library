@@ -61,6 +61,7 @@ import { ReactComponent as Aws } from './Aws.svg';
 import { ReactComponent as Upload } from './Upload.svg';
 
 import { IProps } from './types';
+import { useState } from 'react';
 
 const icons = {
   Edit,
@@ -131,20 +132,35 @@ const Icon = ({
   width = '20',
   height = '20',
   fill = 'currentColor',
+  hoverFill,
   onClick,
   cursor = 'default',
   className,
   testId = `Icon-${icon}`,
 }: IProps) => {
   const IconSVG = icons[icon];
+  
+  const [isHover, setHover] = useState(false);
+
 
   const handleClick = () => {
     onClick && onClick();
   };
+  const handleMouseEnter = function() {
+    setHover(true)
+  } 
+  const handleMouseLeave = function() {
+    setHover(false)
+  } 
+
+  var classSpan = hoverFill ? "block rounded p-0.8 " : ""; 
+  classSpan += isHover && hoverFill ? "blog bg-gray-100" : ""; 
+
+  var colorFill = isHover && hoverFill ? hoverFill : fill;
 
   return (
-    <span data-cy={testId} onClick={handleClick} role="button" tabIndex={0} aria-hidden="true">
-      <IconSVG className={className} style={{ cursor }} width={width} height={height} fill={fill} />
+    <span className={classSpan} data-cy={testId} onClick={handleClick} role="button" tabIndex={0} aria-hidden="true">
+      <IconSVG onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={className} style={{ cursor }} width={width} height={height} fill={colorFill} />
     </span>
   );
 };
