@@ -7,7 +7,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        'sans': ['Inter', ...defaultTheme.fontFamily.sans],
+        'serif': ['Inter', ...defaultTheme.fontFamily.serif],
+        'mono': ['ui-monospace', 'SFMono-Regular'],     
       },  
       maxWidth: {
         xxs: '15rem',
@@ -19,6 +21,7 @@ module.exports = {
 
     },
     colors: {
+      transparent: "transparent",
       black: '#000000',
       white: '#FFFFFF',
       red: {

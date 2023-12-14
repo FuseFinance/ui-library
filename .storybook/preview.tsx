@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import type { Preview } from '@storybook/react';
-import { GlobalStyle } from '../src/styles';
-import '../src/index.css';
 import '../src/styles/global.css';
 import 'reactflow/dist/style.css';
 import reportWebVitals from '../src/reportWebVitals';
@@ -20,8 +18,14 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <ConfigProvider theme={{ token: { colorText: '#002140', colorBorder: '#C9D3E0' } }}>
-        <GlobalStyle/>
+      <ConfigProvider theme={{ 
+        token: { 
+          fontFamily:"'Inter', sans-serif", 
+          colorText: '#002140', 
+          colorBorder: '#C9D3E0',
+          colorPrimary: '#0A38C2'
+        } 
+        }}>
         <Story />
       </ConfigProvider>
     ),

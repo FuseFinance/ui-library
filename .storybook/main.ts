@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-storysource',
     '@storybook/addon-essentials',
-    '@storybook/addon-console',
     '@storybook/addon-docs',
     '@storybook/addon-actions'
   ],

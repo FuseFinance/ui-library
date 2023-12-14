@@ -1,0 +1,26 @@
+.resize-container {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+}
+
+
+.resize-text {
+    display: inline-block;
+    cursor: pointer;
+    max-width: 100%;
+    min-width: 24px;
+    overflow: hidden;
+    white-space: pre;
+    text-overflow: ellipsis;
+    transition: border 0.2s;
+    transition: padding 0.2s;
+}
+
+.resize-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
