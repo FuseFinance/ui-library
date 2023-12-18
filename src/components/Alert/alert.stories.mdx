@@ -1,0 +1,55 @@
+import { Meta, ArgsTable, Canvas } from '@storybook/addon-docs';
+import { Alert, Space } from 'antd';
+import { UilInfoCircle, UilCheckSquare } from '@iconscout/react-unicons';
+
+<Meta title="Components/Alert/Alerts" component={Alert} />
+
+# Alert Component
+
+## Alert Component Import
+
+
+```jsx
+
+import { Alert } from 'antd';
+
+```
+## Alert Component Examples
+
+## Success Alert
+
+<Canvas>
+  <Space direction="vertical" style={{ width: '400px' }}>
+    <Alert
+      message="Information Text"
+      description="This is the alert description."
+      type="success"
+      style={{
+        backgroundColor: 'white',
+        border: 'none',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      }}
+      icon={<UilInfoCircle style={{ color: 'blue' }} />}
+      showIcon
+    />
+  </Space>
+</Canvas>
+
+## Check Alert
+
+<Canvas>
+  <Space direction="vertical" style={{ width: '400px' }}>
+    <Alert
+      message="Check Information"
+      description="This is the alert description."
+      type="info"
+      style={{
+        backgroundColor: 'white',
+        border: 'none',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      }}
+      icon={<UilCheckSquare style={{ color: 'green' }} />}
+      showIcon
+    />
+  </Space>
+</Canvas>
