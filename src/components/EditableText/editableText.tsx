@@ -26,6 +26,7 @@ const EditableText = ({
   const inputRef = useRef<InputRef>(null);
   const mirrorRef = useRef(null);
   const mirrorRefDefaultHeight = useRef(null);
+  const containerHeight = useRef(null);
 
   // Set useEffect
   useEffect(() => {
@@ -78,26 +79,24 @@ const EditableText = ({
 
   // Set style
   // text class
+
+  var resizeContainerClass = [
+    "resize-container",
+    isEditing && canEdit ? "active" : "",
+    isEditing && canEdit ? "pl-1 pr-1" : ""        
+  ]
+  
+  // text class
   var textClass = [
     // main class
     "resize-text",
     // style tailwind
+    "text-blue-900",
     "border",
     "border-transparent",
-    "inline-block",
-    "text-blue-900",
-    "pt-1",
-    "pb-1",
+    "rounded", 
     "text-" + $size,
     "font-" + strongText,
-    // hover tailwind 
-    "hover:pt-1",
-    "hover:pb-1",
-    "hover:pr-2",
-    "hover:pl-2",      
-    "hover:rounded",
-    !isEditing || !canEdit ? "hover:border-gray-200" : "",
-    isEditing && canEdit ? "pl-2 pr-2" : ""      
   ]
   
   // text style with conditional
@@ -110,19 +109,20 @@ const EditableText = ({
     "resize-input",
     // style tailwind
     "text-blue-900",
-    "pt-1",
-    "pb-1",
-    "pr-2",
-    "pl-2", 
+    "pt-0",
+    "pb-0",
+    "pr-1",
+    "pl-1", 
     "text-" + $size,
     "font-" + strongText,
     // conditional style
-    !isEditing || !canEdit ? "hidden" : ""
+    !isEditing || !canEdit ? "hidden" : "inline"
   ]
+
 
   return (
     <>
-    <div className="resize-container">
+    <div ref={containerHeight} className={resizeContainerClass.join(" ")}>
       <span onClick={handleSpanClick} ref={mirrorRef} style={textStyle} className={textClass.join(" ")} {...customAttrText}></span>
       <span className={textClass.join(" ")} ref={mirrorRefDefaultHeight} style={{visibility: "hidden", position: "absolute"}}>A</span>          
       <Input

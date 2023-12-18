@@ -1,7 +1,7 @@
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 
-import colors from '@/src/styles/colors';
+import colors from '@/src/styles/colorsGlobal';
 
 // FIXME: The theme is intentionally dirty here to tweak quickly until we found the correct combination
 const baseTheme = createTheme({

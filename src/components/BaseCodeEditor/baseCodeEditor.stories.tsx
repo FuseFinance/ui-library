@@ -19,7 +19,7 @@ export default {
         "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g
       }
     ],
-    readonly: true,
+    readonly: false,
     customCSSClass : undefined,
     containerCSSClass : undefined,
     customContainerAttr : undefined

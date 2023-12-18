@@ -1,14 +1,15 @@
 import baseTheme from './baseTheme';
 import { useBaseCodeEditorConfig } from './hooks';
 import { BaseCodeEditorConfig, IProps } from './types';
+import './baseCodeEditor.css'
 
 const BaseCodeEditor = ({
   onChange,
   onBlur,
   value,
   plugins = [],
-  customCSSClass,
-  placeholder = '',
+  customCSSClass = "",
+  placeholder = "",
   theme = baseTheme,
   maxLines,
   defaultValue,
@@ -31,11 +32,8 @@ const BaseCodeEditor = ({
     readonly,
     lineWrapping,
     extensions,
+    customCSSClass : "editor-code-globla-style " + customCSSClass
   };
-
-  if (customCSSClass) {
-    editorConfig.customCSSClass = customCSSClass;
-  }
 
   const ref = useBaseCodeEditorConfig(editorConfig);
   return (
