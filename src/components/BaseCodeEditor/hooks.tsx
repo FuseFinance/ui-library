@@ -21,10 +21,9 @@ import {
   getCurrentWord,
   isDot,
   isWhitespace,
-} from '@/src/utils/codeEditorHelper';
+} from '@/src/components/BaseCodeEditor/codeEditorHelper';
 
-import { IEditorPlugin } from '../CodeEditor/plugins/types';
-import { BaseCodeEditorConfig } from './types';
+import { BaseCodeEditorConfig, IEditorPlugin } from './types';
 
 const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
   const [pluginsLoaded, setPluginsLoaded] = useState<IEditorPlugin[]>([]);

@@ -6,7 +6,7 @@ import StepModalHead from '@components/Modal/stepModalHead';
 import Icon from '@/src/components/Icons';
 import { IconList } from '@/src/components/Icons/types';
 import { Divider } from 'antd';
-import CodeEditor from '@components/CodeEditor';
+import BaseCodeEditor from '@components/BaseCodeEditor';
 import EditableText from '@components/EditableText/editableText';
 
 
@@ -100,11 +100,11 @@ const Template = (args) => {
             return (
             <div key={branch.id} className={styleConentClass}>
               <div>
-                <EditableText onSpanClick={() => handleActiveInput(index)} $size='md' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
+                <EditableText onSpanClick={() => handleActiveInput(index)} $size='lg' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
               </div> 
               <div className="flex">
                 <div onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
-                  <CodeEditor onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
+                  <BaseCodeEditor onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
                 </div>
                 <div className="mt-auto mb-auto">
                   <Icon icon={IconList.Trash} hoverFill="#0A38C2" fill="#9CA3AF" cursor="pointer" width="1.2rem" height="1.4rem" onClick={() => removeBranch(index)} />

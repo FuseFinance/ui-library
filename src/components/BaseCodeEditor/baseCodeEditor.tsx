@@ -6,17 +6,19 @@ const BaseCodeEditor = ({
   onChange,
   onBlur,
   value,
-  plugins,
+  plugins = [],
   customCSSClass,
   placeholder = '',
   theme = baseTheme,
   maxLines,
   defaultValue,
   containerCSSClass,
-  readonly,
+  customContainerAttr,
+  readonly = false,
   lineWrapping,
   extensions,
 }: IProps) => {
+  
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
     onBlur,
@@ -38,7 +40,7 @@ const BaseCodeEditor = ({
   const ref = useBaseCodeEditorConfig(editorConfig);
   return (
     <>
-      <div ref={ref} className={`overflow-hidden ${containerCSSClass || ''}`} data-cy={"testId"} />
+      <div ref={ref} className={`overflow-hidden ${containerCSSClass || ''}`} {...customContainerAttr}/>
     </>
   );
 };
