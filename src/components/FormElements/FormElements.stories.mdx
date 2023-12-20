@@ -1,0 +1,39 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { Checkbox, Radio, Switch } from 'antd';
+
+<Meta title="From/FormElements" />
+
+# FormElements Component
+
+## FormElements Component Import
+
+```jsx
+import { Checkbox, Radio, Switch } from 'antd';
+```
+
+## Checkbox
+
+<Canvas>
+  <Checkbox className="font-serif">Checkbox</Checkbox>
+</Canvas>
+
+## Radio
+
+<Canvas>
+  <Radio.Group>
+    <Radio value={1}>
+      <p className="font-serif">Male</p>
+    </Radio>
+    <Radio value={2}>
+    <p className="font-serif">Female</p>
+
+    </Radio>
+
+  </Radio.Group>
+</Canvas>
+
+## Switch Toggle
+
+<Canvas>
+  <Switch defaultChecked />
+</Canvas>

@@ -1,0 +1,47 @@
+.checkbox-container {
+    display:inline-block;
+    padding: 15px 10px 0px 10px;
+  }
+  
+
+  .custom-checkbox {
+    display:block; 
+    margin-bottom: -15px
+  }
+
+ 
+  .chkNameClass{
+    margin-bottom: 10px;
+    font-weight: bold;
+    color:darkgray;
+    font-size: 12px;
+  }
+
+  .radio-container {
+    display:inline-block;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+  }
+  
+
+  .custom-radio {
+    display:block; 
+    margin-bottom: 1px
+  }
+
+  .toogle-container {
+    display:inline-block;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  
+
+  .custom-toogle {
+    display:block; 
+    margin-bottom: 15px;
+    background-color:'red   '
+  }
