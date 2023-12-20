@@ -1,4 +1,3 @@
-import { DefaultComponentIds } from '@constants/appIDS';
 import baseTheme from './baseTheme';
 import { useBaseCodeEditorConfig } from './hooks';
 import { BaseCodeEditorConfig, IProps } from './types';
@@ -17,7 +16,6 @@ const BaseCodeEditor = ({
   readonly,
   lineWrapping,
   extensions,
-  testId = DefaultComponentIds.codeEditor,
 }: IProps) => {
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
@@ -40,7 +38,7 @@ const BaseCodeEditor = ({
   const ref = useBaseCodeEditorConfig(editorConfig);
   return (
     <>
-      <div ref={ref} className={`overflow-hidden ${containerCSSClass || ''}`} data-cy={testId} />
+      <div ref={ref} className={`overflow-hidden ${containerCSSClass || ''}`} data-cy={"testId"} />
     </>
   );
 };

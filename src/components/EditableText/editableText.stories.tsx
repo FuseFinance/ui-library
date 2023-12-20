@@ -5,11 +5,13 @@ import { Meta } from '@storybook/react';
 import { StrongText } from '@/src/types/globalDesign/text';
 
 const defaultArgs: IEditLabelProps & WithSize & StrongText = {
-  label: 'Ejemplo',
+  label: 'Example',
   onLabelChange: (newValue) => action('edit text!')(newValue),
   canEdit: true,
   strongText: 'medium',
-  $size: 'base'
+  $size: 'base',
+  customAttrInput: undefined,
+  customAttrText: undefined  
 };
 
 export default {
@@ -23,7 +25,7 @@ export default {
     },    
     $size: {
       control: 'select',
-      options: ['xs', 'sm', 'base', 'md', 'xl', '2xl', '3xl'],
+      options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl'],
     }
   },    
 } as Meta;
