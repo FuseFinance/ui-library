@@ -1,0 +1,78 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { Dropdown, Button, Menu } from 'antd';
+import React from 'react';
+import { DownOutlined, UserOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons';
+import { ConfigProvider } from 'antd';
+import colors from '@styles/colorsGlobal';
+
+
+
+<Meta title="Components/Dropdown/Dropdowns" component={Dropdown} />
+
+# Dropdown Component
+
+## Dropdown Component Import
+
+
+```jsx
+
+import { Dropdown } from 'antd';
+
+```
+## Dropdown Component Examples
+
+## Dropdown Without Icon
+<ConfigProvider theme={{ 
+token: { 
+  fontFamily:"'Inter', sans-serif", 
+  colorText: colors.blue[900], 
+  colorBorder: colors.gray[400],
+  colorPrimary: colors.blue[600],
+  colorError: colors.red[600],
+  colorTextDisabled : colors.gray[300],
+} 
+}}>
+<Canvas>
+
+  <Dropdown overlay={<Menu onClick={console.log}>
+    <Menu.Item key="1" icon={<UserOutlined />}>
+        1st menu item
+      </Menu.Item>
+      <Menu.Item key="2" icon={<UserOutlined />}>
+        2nd menu item
+      </Menu.Item>
+      <Menu.Item key="3" icon={<UserOutlined />} danger>
+        3rd menu item
+      </Menu.Item>
+      <Menu.Item key="4" icon={<UserOutlined />} danger disabled>
+        4rd menu item
+      </Menu.Item>
+    </Menu>}>
+    <Button>
+      Actions <DownOutlined />
+    </Button>
+  </Dropdown>
+</Canvas>
+
+## Dropdown With Icon
+
+<Canvas>
+  <Dropdown
+    overlay={
+      <Menu>
+        <Menu.Item key="2" icon={<SettingOutlined />}>
+          Settings
+        </Menu.Item>
+        <Menu.Item key="3" icon={<LogoutOutlined />}>
+          Logout
+        </Menu.Item>
+      </Menu>
+    }
+  >
+    <Button style={{ display: 'flex', alignItems: 'center' }}>
+      <UserOutlined />
+      <span style={{ marginTop: '2px' }}>User</span>
+    </Button>
+  </Dropdown>
+</Canvas>
+</ConfigProvider>
