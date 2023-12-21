@@ -22,16 +22,7 @@ import { Dropdown } from 'antd';
 ## Dropdown Component Examples
 
 ## Dropdown Without Icon
-<ConfigProvider theme={{ 
-token: { 
-  fontFamily:"'Inter', sans-serif", 
-  colorText: colors.blue[900], 
-  colorBorder: colors.gray[400],
-  colorPrimary: colors.blue[600],
-  colorError: colors.red[600],
-  colorTextDisabled : colors.gray[300],
-} 
-}}>
+
 <Canvas>
 
   <Dropdown overlay={<Menu onClick={console.log}>
@@ -40,12 +31,6 @@ token: {
       </Menu.Item>
       <Menu.Item key="2" icon={<UserOutlined />}>
         2nd menu item
-      </Menu.Item>
-      <Menu.Item key="3" icon={<UserOutlined />} danger>
-        3rd menu item
-      </Menu.Item>
-      <Menu.Item key="4" icon={<UserOutlined />} danger disabled>
-        4rd menu item
       </Menu.Item>
     </Menu>}>
     <Button>
@@ -75,4 +60,3 @@ token: {
     </Button>
   </Dropdown>
 </Canvas>
-</ConfigProvider>

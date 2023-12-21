@@ -153,7 +153,7 @@ const Icon = ({
     setHover(false)
   } 
 
-  var classSpan = hoverFill ? "block rounded p-0.8 " : ""; 
+  var classSpan = hoverFill ? "inline-block rounded p-0.8 " : ""; 
   classSpan += isHover && hoverFill ? "blog bg-gray-100" : ""; 
 
   var colorFill = isHover && hoverFill ? hoverFill : fill;

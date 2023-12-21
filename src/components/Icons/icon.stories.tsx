@@ -26,6 +26,13 @@ export default {
       control: 'color'
     } 
   },
+  decorators: [
+    (Story) => (
+      <div style={{ backgroundColor: '#fff', height: '100vh' }}>
+        <Story />
+      </div>
+    ),
+  ],  
 } as Meta;
 
 const Template = (args) => <Icon {...args} />;
@@ -37,6 +44,6 @@ IcionPersonalized.args = {
   cursor:"pointer",
   width:"1.2rem",
   height:"1.4rem",
-  onClick:{handleClick},
+  onClick:handleClick,
   hoverFill:""
 };

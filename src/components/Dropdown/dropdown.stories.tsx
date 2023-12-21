@@ -49,12 +49,6 @@ DropdownWithoutIcon.args = {
       <Menu.Item key="2" icon={<UserOutlined />}>
         2nd menu item
       </Menu.Item>
-      <Menu.Item key="3" icon={<UserOutlined />} danger>
-        3rd menu item
-      </Menu.Item>
-      <Menu.Item key="4" icon={<UserOutlined />} danger disabled>
-        4rd menu item
-      </Menu.Item>
     </Menu>
   ),
 };
