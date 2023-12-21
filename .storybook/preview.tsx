@@ -28,7 +28,9 @@ const preview: Preview = {
           colorPrimary: colors.blue[600],
           colorError: colors.red[600],
           colorTextDisabled : colors.gray[300],
-          colorBgContainerDisabled: "#ffffff"
+          colorBgContainerDisabled: "#ffffff",
+          colorSplit: colors.gray[200],
+          controlItemBgHover: colors.gray[100],
         } 
         }}>
         <Story />

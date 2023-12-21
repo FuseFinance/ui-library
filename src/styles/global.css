@@ -454,6 +454,11 @@ h1 {
   background-color: #fff;
 }
 
+/* Calendar */
+.ant-picker-calendar .ant-picker-panel .ant-picker-date-panel .ant-picker-body{
+  padding-bottom: 0;
+}
+
 /**
  * Tailwind config
  */
