@@ -1,7 +1,9 @@
-import { IEditorPlugin } from '@/src/components/CodeEditor/plugins/types';
-import { Optional } from '@/src/utils/types/utility';
 /* eslint-disable-next-line import/named */
 import { Extension } from '@codemirror/state';
+
+export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+
+export type PluginPrecedence = 'highest' | 'high' | 'default' | 'low' | 'lowest';
 
 export type BaseCodeEditorConfig = {
   onChange?: (_value: string) => void;
@@ -16,9 +18,18 @@ export type BaseCodeEditorConfig = {
   containerCSSClass?: string;
   readonly?: boolean;
   lineWrapping?: boolean;
-  testId?: string;
+  customContainerAttr?: Record<string, string>;
   extensions?: Extension[];
 };
+
+export interface IEditorPlugin {
+  name: string;
+  isModule: boolean;
+  decorationClass: string;
+  matchRegex?: RegExp;
+  options?: Record<string, any>;
+  precedence?: PluginPrecedence;
+}
 
 /* eslint-disable-next-line @typescript-eslint/no-empty-interface */
 export interface IProps extends Optional<BaseCodeEditorConfig, 'placeholder' | 'theme'> {}

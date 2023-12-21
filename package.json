@@ -80,7 +80,7 @@
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
     "@storybook/addon-links": "^7.6.1",
-    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/react": "^7.6.1",
     "@storybook/react-vite": "^7.6.1",
     "@testing-library/react": "^14.0.0",

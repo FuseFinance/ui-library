@@ -101,10 +101,6 @@ h1 {
   @apply text-2xl font-semibold block;
 }
 
-.notification-box {
-  @apply text-gray-600 text-sm;
-}
-
 .ant-btn-icon-only {
   @apply flex items-center justify-center;
 }
@@ -192,10 +188,6 @@ h1 {
   @apply text-sm font-medium;
 }
 
-.api-dropdown .ant-btn-default {
-  @apply border-gray-300 rounded-r-none pr-2 font-medium;
-}
-
 .api-dropdown .ant-input {
   @apply rounded-l-none border-l-0;
 }
@@ -210,10 +202,6 @@ h1 {
 
 .ant-dropdown-menu-title-content {
   @apply capitalize;
-}
-
-.env-dropdown-production .ant-btn-default {
-  @apply border-violet-700 bg-[#f3e8ff] text-violet-700 hover:bg-violet-700;
 }
 
 .env-dropdown-production .ant-btn-default:hover {
@@ -240,7 +228,6 @@ h1 {
 }
 
 .cm-content {
-  @apply bg-white rounded w-full text-gray-800 flex-1;
   background-color: transparent;
 }
 

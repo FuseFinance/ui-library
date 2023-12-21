@@ -1,0 +1,61 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import BaseCodeEditor from '@components/BaseCodeEditor';
+
+
+<Meta title="Components/FormAndInput/Code Editor" component={BaseCodeEditor} />
+
+
+
+# Code Edit
+
+## Code Edit Text Area Import
+
+```jsx
+
+import BaseCodeEditor from '@components/BaseCodeEditor';
+
+
+```
+
+## Code Edit In Line
+<Canvas>
+  <BaseCodeEditor
+    defaultValue = 'var myVar = customVars.myOpntionOne()'
+    onChange = {console.log}
+    customCSSClass = ''
+    placeholder='my placeholder'
+    plugins = {[
+      {
+        "name": "customVars",
+        "isModule": true,
+        "decorationClass": "code-tag code-editor-hl-formula",
+        "options": {
+            "myOpntionOne()": "customVars"
+        },
+        "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g
+      }
+    ]}    
+  />  
+</Canvas>  
+
+## Code Edit Text Area
+<Canvas>
+  <BaseCodeEditor
+    defaultValue = '{}'
+    onChange = {console.log}
+    customCSSClass = 'h-96 w-full !bg-white'
+    placeholder='my placeholder'
+    plugins = {[
+      {
+        "name": "customVars",
+        "isModule": true,
+        "decorationClass": "code-tag code-editor-hl-formula",
+        "options": {
+            "myOpntionOne()": "customVars"
+        },
+        "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g
+      }
+    ]}    
+  />
+</Canvas>
+
