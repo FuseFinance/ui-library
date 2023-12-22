@@ -1,24 +1,35 @@
 .resize-container {
-    display: inline-block;
+    display: grid;
     position: relative;
     max-width: 100%;
+    width: fit-content;
 }
 
-
 .resize-text {
-    display: inline-block;
+    display: block;
     cursor: pointer;
     max-width: 100%;
     min-width: 24px;
     overflow: hidden;
     white-space: pre;
     text-overflow: ellipsis;
-    transition: border 0.2s;
-    transition: padding 0.2s;
 }
+
+.resize-container:not(.active):hover{
+   margin-left: -4px;
+}
+
+
+.resize-container:not(.active):hover .resize-text{
+    border: 1px solid theme('colors.gray.200');
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
 
 .resize-input {
     position: absolute;
+    margin-left: -4px;
     top: 0;
     left: 0;
     right: 0;

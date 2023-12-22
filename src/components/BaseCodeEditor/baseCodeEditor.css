@@ -1,0 +1,17 @@
+.editor-code-globla-style.cm-editor {
+    background-color: #fff;
+    border-color: theme('colors.gray.200');
+}
+
+.editor-code-globla-style.cm-editor .cm-line{
+    padding-left: 0;
+}
+
+.editor-code-globla-style.cm-editor .cm-content{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.editor-code-globla-style.cm-focused{
+    border: 1px solid theme('colors.blue.600');
+}

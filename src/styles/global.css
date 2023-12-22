@@ -374,8 +374,15 @@ h1 {
 }
 
 .ant-modal .ant-modal-close{
-  top: 8px;
+  top: 14px;
   inset-inline-end: 16px;  
+  width: 16px;
+  height: 16px;  
+}
+
+.ant-modal .ant-modal-close svg{
+  width: 12px;
+  height: 12px;  
 }
 
 .ant-btn.ant-btn-primary:disabled{
@@ -460,11 +467,6 @@ h1 {
 /* border */
 .border-transparent{
   border-color: transparent;
-}
-
-/* backgout */
-.bg-gree-400{
-  background-color: theme('colors.gray.200');
 }
 
 /* general */

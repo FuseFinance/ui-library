@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/react';
 import '../src/styles/global.css';
 import 'reactflow/dist/style.css';
 import reportWebVitals from '../src/reportWebVitals';
-import colors from '../src/styles/colors';
+import colors from '../src/styles/colorsGlobal';
 import './style.css';
 
 import { ConfigProvider } from 'antd';

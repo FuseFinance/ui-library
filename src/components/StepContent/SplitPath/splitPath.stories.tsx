@@ -23,7 +23,13 @@ const Template = (args) => {
     id: 1,
     label: "Branch 1",
     isActiveInput: false
-  }]);
+  },
+  {
+    id: 1,
+    label: "Branch 2",
+    isActiveInput: false
+  }
+  ]);
 
   const addBranch = (e) => {
     setBranch([...listBranch, {
@@ -83,8 +89,8 @@ const Template = (args) => {
     <Button type="primary" onClick={showModal}>
       Open Modal
     </Button>
-    <Modal title={null} footer={null} open={isModalOpen} onCancel={handleCancel}>
-      <div className="head-split-path pt-1 pb-1 pl-4 pr-12">
+    <Modal width={640} title={null} footer={null} open={isModalOpen} onCancel={handleCancel}>
+      <div className="head-split-path pt-2 pb-2 pl-4 pr-12">
         <StepModalHead onLabelChange={onLabelChangeHead} icon={IconList.Branch} label='Split Path' />
       </div>
       <Divider style={{margin:0}}></Divider>
@@ -99,16 +105,22 @@ const Template = (args) => {
 
             return (
             <div key={branch.id} className={styleConentClass}>
-              <div>
-                <EditableText onSpanClick={() => handleActiveInput(index)} $size='lg' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
+              <div className='pb-1'>
+                <EditableText onSpanClick={() => handleActiveInput(index)} $size='xs' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
               </div> 
               <div className="flex">
                 <div onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
-                  <BaseCodeEditor onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
+                  <BaseCodeEditor placeholder='text' onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
                 </div>
-                <div className="mt-auto mb-auto">
-                  <Icon icon={IconList.Trash} hoverFill="#0A38C2" fill="#9CA3AF" cursor="pointer" width="1.2rem" height="1.4rem" onClick={() => removeBranch(index)} />
-                </div>
+                {
+                  listBranch.length > 2 &&
+                    <div className="mt-auto mb-auto">
+                      <Icon icon={IconList.Trash} hoverFill="#0A38C2" fill="#9CA3AF" cursor="pointer" width="16px" height="16px" onClick={() => removeBranch(index)} />
+                    </div>
+                }
+
+                
+
               </div>
             </div>
             ) 

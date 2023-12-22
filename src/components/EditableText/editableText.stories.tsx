@@ -30,6 +30,7 @@ export default {
   },    
 } as Meta;
 
-const Template = (args) => <EditableText {...args} />;
+const Template = (args) => <EditableText /* code use only in StoryBook */ 
+key={Date.now().toString() + Math.random().toString()} {...args} />;
 
 export const EditableTextMain = Template.bind({});
