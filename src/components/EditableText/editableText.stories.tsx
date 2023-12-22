@@ -15,7 +15,7 @@ const defaultArgs: IEditLabelProps & WithSize & StrongText = {
 };
 
 export default {
-  title: 'Components/FormAndInput',
+  title: 'From/EditableText',
   component: EditableText,
   args: defaultArgs,
   argTypes: {

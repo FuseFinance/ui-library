@@ -11,7 +11,7 @@ import EditableText from '@components/EditableText/editableText';
 
 
 export default {
-  title: 'Components/Step',
+  title: 'Example/Step',
   component: Button,
 } as Meta;
 
