@@ -25,7 +25,9 @@ const preview: Preview = {
           fontFamily:"'Inter', sans-serif", 
           colorText: colors.blue[900], 
           colorBorder: colors.gray[400],
-          colorPrimary: colors.blue[600]
+          colorPrimary: colors.blue[600],
+          colorError: colors.red[600],
+          colorTextDisabled : colors.gray[300],
         } 
         }}>
         <Story />
