@@ -1,0 +1,30 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { Button } from 'antd';
+import { Calendar, Divider } from 'antd';
+
+<Meta title="Components/Calendar" />
+
+# Calendar Component
+
+## Calendar Component Import
+
+```jsx
+import { Calendar, Divider, Button } from 'antd';
+```
+
+<Canvas>
+<div className="w-80 bg-white ">
+    <div>
+        <div className='p-4'>
+          <Calendar fullscreen={false} onPanelChange={console.log} />
+          <Divider className='mb-2 mt-1' />
+          <Button
+            type="primary"
+          >
+            Apply
+          </Button>
+        </div>
+    </div>
+
+ </div>
+</Canvas>
