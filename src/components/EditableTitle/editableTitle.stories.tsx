@@ -1,5 +1,5 @@
-import EditableText from '@components/EditableText/editableText';
-import { IEditLabelProps, WithSize } from '@components/EditableText/types';
+import EditableTitle from '@/src/components/EditableTitle/editableTitle';
+import { IEditLabelProps, WithSize } from '@/src/components/EditableTitle/types';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 import { StrongText } from '@/src/types/globalDesign/text';
@@ -15,8 +15,8 @@ const defaultArgs: IEditLabelProps & WithSize & StrongText = {
 };
 
 export default {
-  title: 'From/EditableText',
-  component: EditableText,
+  title: 'From/EditableTitle',
+  component: EditableTitle,
   args: defaultArgs,
   argTypes: {
     strongText: {
@@ -30,7 +30,7 @@ export default {
   },    
 } as Meta;
 
-const Template = (args) => <EditableText /* code use only in StoryBook */ 
+const Template = (args) => <EditableTitle /* code use only in StoryBook */ 
 key={Date.now().toString() + Math.random().toString()} {...args} />;
 
-export const EditableTextMain = Template.bind({});
+export const EditableTitleMain = Template.bind({});

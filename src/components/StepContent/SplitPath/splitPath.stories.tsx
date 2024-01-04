@@ -7,7 +7,7 @@ import Icon from '@/src/components/Icons';
 import { IconList } from '@/src/components/Icons/types';
 import { Divider } from 'antd';
 import BaseCodeEditor from '@components/BaseCodeEditor';
-import EditableText from '@components/EditableText/editableText';
+import EditableTitle from '@/src/components/EditableTitle/editableTitle';
 
 
 export default {
@@ -15,7 +15,7 @@ export default {
   component: Button,
 } as Meta;
 
-const Template = (args) => {
+const Template = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,14 +41,14 @@ const Template = (args) => {
   };
 
   const removeBranch = (branchId) => {
-    var newListBranh = listBranch.filter((_, index) => index !== branchId);
+    const newListBranh = listBranch.filter((_, index) => index !== branchId);
 
     setBranch(newListBranh);
     action('remove branch')('newListBranh');
   };
 
   const handleActiveInput = (branchId) => {
-    var newListBranh = [ ... listBranch]
+    const newListBranh = [ ... listBranch]
 
     newListBranh[branchId].isActiveInput = true;
 
@@ -58,12 +58,12 @@ const Template = (args) => {
   };  
 
 
-  const onLabelChangeHead = (e) => {
-    action('On label change')(e);
+  const onLabelChangeHead = (_newLabel: string) => {
+    action('On label change')(_newLabel);
   }; 
 
   const onLabelChangeContent = (branchId) => {
-    var newListBranh = [ ... listBranch]
+    const newListBranh = [ ... listBranch]
 
     newListBranh[branchId].isActiveInput = false;
 
@@ -85,6 +85,12 @@ const Template = (args) => {
     action('click in cancel buttom')(e);
   };
 
+  const handleKeyPress = (event, index) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleActiveInput(index)
+    }
+  }
+
   return (<>
     <Button type="primary" onClick={showModal}>
       Open Modal
@@ -99,13 +105,13 @@ const Template = (args) => {
 
           listBranch.map(function(branch, index) { 
 
-            var styleConentClass = 'conent-code-input pl-4 pr-4 pb-2';
+            let styleConentClass = 'conent-code-input pl-4 pr-4 pb-2';
 
             styleConentClass +=  index == 0 ? " pt-4" : " pt-1"
 
             styleConentClass += branch.isActiveInput ? " bg-gray-50" : "";
 
-            var classConentEditableText = [
+            const classConentEditableText = [
               "pb-1",
               listBranch.length > 2 && "pr-0.9 mr-4"
             ]
@@ -114,10 +120,10 @@ const Template = (args) => {
             return (
             <div key={branch.id} className={styleConentClass}>
               <div className={classConentEditableText.join(' ')} >
-                <EditableText onSpanClick={() => handleActiveInput(index)} $size='xs' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
+                <EditableTitle onSpanClick={() => handleActiveInput(index)} $size='xs' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
               </div> 
               <div className="flex">
-                <div onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
+                <div role="button" onKeyDown={(event) => handleKeyPress(event, index)} tabIndex={0} onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
                   <BaseCodeEditor placeholder='var isValid = creditScore > 10' onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
                 </div>
                 {

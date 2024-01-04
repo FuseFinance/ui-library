@@ -3,10 +3,10 @@ import { IEditLabelProps, WithSize } from './types';
 import { Input } from 'antd';
 import { InputRef } from 'antd/lib/input';
 import { StrongText } from '@/src/types/globalDesign/text';
-import './editableText.css';
+import './editableTitle.css';
 
 
-const EditableText = ({
+const EditableTitle = ({
   label,
   onLabelChange,
   onSpanClick,
@@ -75,17 +75,24 @@ const EditableText = ({
     onLabelChange(event.target.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+        handleSpanClick();
+    }
+  }
+
   // Set style
   // text class
 
-  var resizeContainerClass = [
+  const resizeContainerClass = [
+    "editable-title",
     "resize-container",
     isEditing && canEdit ? "active" : "",
     isEditing && canEdit ? "pl-1 pr-1" : ""        
   ]
   
   // text class
-  var textClass = [
+  const textClass = [
     // main class
     "resize-text",
     // style tailwind
@@ -98,11 +105,10 @@ const EditableText = ({
   ]
   
   // text style with conditional
-  var textStyle = isEditing && canEdit ? {color: "transparent"} : {}
-
+  const textStyle = isEditing && canEdit ? {color: "transparent"} : {}
 
   // input class
-  var inputClass = [
+  const inputClass = [
     // main class
     "resize-input",
     // style tailwind
@@ -121,7 +127,7 @@ const EditableText = ({
   return (
     <>
     <div ref={containerHeight} className={resizeContainerClass.join(" ")}>
-      <span onClick={handleSpanClick} ref={mirrorRef} style={textStyle} className={textClass.join(" ")} {...customAttrText}></span>
+      <span role="button" onClick={handleSpanClick} onKeyDown={handleKeyPress} tabIndex={0} ref={mirrorRef} style={textStyle} className={textClass.join(" ")} {...customAttrText}></span>
       <span className={textClass.join(" ")} ref={mirrorRefDefaultHeight} style={{visibility: "hidden", position: "absolute"}}>A</span>          
       <Input
         value={valueInput}
@@ -137,4 +143,4 @@ const EditableText = ({
   );
 };
 
-export default EditableText;
+export default EditableTitle;

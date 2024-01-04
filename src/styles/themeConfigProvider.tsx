@@ -1,8 +1,9 @@
 import { ConfigProvider } from 'antd';
 import colors from '@styles/colorsGlobal';
+import React, { ReactNode } from 'react';
 
 
-const ThemeConfigProvider = ({children})=> {
+const ThemeConfigProvider: React.FC<ThemeConfigProviderProps> = ({children})=> {
 
     return (<ConfigProvider theme={{ 
         token: { 
@@ -19,6 +20,10 @@ const ThemeConfigProvider = ({children})=> {
         }}>
             {children}
     </ConfigProvider>)
+}
+
+export interface ThemeConfigProviderProps {
+  children: ReactNode
 }
 
 export default ThemeConfigProvider;
