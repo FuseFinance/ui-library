@@ -1,7 +1,8 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { Space, Alert } from 'antd';
 import { UilInfoCircle, UilCheckSquare } from '@iconscout/react-unicons';
+import colors from '@styles/colorsGlobal';
 
 export default {
   title: 'Components/Alert',
@@ -23,8 +24,8 @@ export default {
 } as Meta;
 
 // Template for the Alert
-const Template: Story = (args) => (
-  <Space direction="vertical" style={{ width: '400px' }}>
+const Template = (args) => (
+  <Space direction="vertical" >
     <Alert
       message={args.message}
       description="This is the alert description."
@@ -45,12 +46,12 @@ export const SuccessAlert = Template.bind({});
 SuccessAlert.args = {
   message: 'Information Text',
   type: 'success',
-  icon: <UilInfoCircle style={{ color: 'blue' }} />,
+  icon: <UilInfoCircle style={{ color: colors.blue[500] }} />,
 };
 
 export const CheckAlert = Template.bind({});
 CheckAlert.args = {
   message: 'Check Information',
   type: 'info',
-  icon: <UilCheckSquare style={{ color: 'green' }} />,
+  icon: <UilCheckSquare style={{ color: colors.green[300] }} />,
 };

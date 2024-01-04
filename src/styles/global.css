@@ -363,8 +363,52 @@ h1 {
  */
 
 /**
+ * Scroll
+ */
+*::-webkit-scrollbar {
+  width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+width: 2px;
+  border-radius: 8px;
+border: 3px solid transparent;
+ background-clip: content-box;
+  background-color: #E0E7F0;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #CBD5E1;
+}
+
+/**
  * AntDesign config
  */
+
+/* Botton */
+.ant-btn.ant-btn-primary:disabled{
+  background-color: theme('colors.blue.300');
+  color: theme('colors.white');
+}
+
+.ant-btn.ant-btn-sm{
+  padding: 2px 16px;
+  height: auto;
+}
+
+.ant-input{
+  background-color: transparent;
+}
+
+/* Modal */
+.ant-modal-wrap{
+  overflow: hidden;
+}
+
 .ant-modal .ant-modal-content{
   padding: 0;
 }
@@ -385,19 +429,6 @@ h1 {
   height: 12px;  
 }
 
-.ant-btn.ant-btn-primary:disabled{
-  background-color: theme('colors.blue.300');
-  color: theme('colors.white');
-}
-
-.ant-btn.ant-btn-sm{
-  padding: 2px 16px;
-  height: auto;
-}
-
-.ant-input{
-  background-color: transparent;
-}
 
 /* Form Elements */
 .ant-checkbox .ant-checkbox-inner:after{

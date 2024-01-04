@@ -25,7 +25,7 @@ const Template = (args) => {
     isActiveInput: false
   },
   {
-    id: 1,
+    id: 2,
     label: "Branch 2",
     isActiveInput: false
   }
@@ -33,7 +33,7 @@ const Template = (args) => {
 
   const addBranch = (e) => {
     setBranch([...listBranch, {
-      id: listBranch.length + 1, 
+      id: listBranch[listBranch.length - 1].id + 1, 
       label: "Branch " + (listBranch.length + 1),
       isActiveInput: false
     }]);
@@ -91,36 +91,41 @@ const Template = (args) => {
     </Button>
     <Modal width={640} title={null} footer={null} open={isModalOpen} onCancel={handleCancel}>
       <div className="head-split-path pt-2 pb-2 pl-4 pr-12">
-        <StepModalHead onLabelChange={onLabelChangeHead} icon={IconList.Branch} label='Split Path' />
+        <StepModalHead onLabelChange={onLabelChangeHead} icon={IconList.Branch} label='Split path' />
       </div>
       <Divider style={{margin:0}}></Divider>
-      <div className="content-split-path pt-2">
+      <div className="content-split-path" style={{ overflow: "auto", maxHeight: "calc(100vh - 240px)"}}>
         {
 
           listBranch.map(function(branch, index) { 
 
-            var styleConentClass = 'conent-code-input pl-4 pr-4 pt-1 pb-2';
+            var styleConentClass = 'conent-code-input pl-4 pr-4 pb-2';
+
+            styleConentClass +=  index == 0 ? " pt-4" : " pt-1"
 
             styleConentClass += branch.isActiveInput ? " bg-gray-50" : "";
 
+            var classConentEditableText = [
+              "pb-1",
+              listBranch.length > 2 && "pr-0.9 mr-4"
+            ]
+            
+
             return (
             <div key={branch.id} className={styleConentClass}>
-              <div className='pb-1'>
+              <div className={classConentEditableText.join(' ')} >
                 <EditableText onSpanClick={() => handleActiveInput(index)} $size='xs' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
               </div> 
               <div className="flex">
                 <div onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
-                  <BaseCodeEditor placeholder='text' onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
+                  <BaseCodeEditor placeholder='var isValid = creditScore > 10' onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
                 </div>
                 {
                   listBranch.length > 2 &&
-                    <div className="mt-auto mb-auto">
+                    <div className="flex items-center">
                       <Icon icon={IconList.Trash} hoverFill="#0A38C2" fill="#9CA3AF" cursor="pointer" width="16px" height="16px" onClick={() => removeBranch(index)} />
                     </div>
                 }
-
-                
-
               </div>
             </div>
             ) 

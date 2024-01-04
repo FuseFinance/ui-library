@@ -44,8 +44,6 @@ const EditableText = ({
     });
 
     mirrorRef.current.style.minHeight = mirrorRefDefaultHeight.current.offsetHeight + "px"
-    inputRef.current.input.style.height = (mirrorRefDefaultHeight.current.clientHeight + 2) + "px" 
-
 
   }, []);
 

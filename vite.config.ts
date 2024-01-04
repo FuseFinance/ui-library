@@ -27,7 +27,7 @@ export default defineConfig({
       overlay: { initialIsOpen: false },
       typescript: true,
       eslint: {
-        lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+        lintCommand: 'eslint "./src/**/*.{ts,tsx,mdx}"',
         dev: {
           logLevel: ['error'],
         },
