@@ -1,8 +1,10 @@
 {
-  "name": "ui-library",
-  "version": "1.1.2",
+  "name": "@fuse-finance/ui-library",
+  "version": "1.0.4",
   "author": "FuseFinance",
-  "private": true,
+  "private": false,
+  "type": "module",
+  "main": "./src/index.ts",
   "dependencies": {
     "@auth0/auth0-react": "^2.1.1",
     "@codemirror/lang-javascript": "^6.1.9",
@@ -14,11 +16,6 @@
     "@react-querybuilder/antd": "^6.5.1",
     "@react-querybuilder/dnd": "^6.5.1",
     "@sentry/react": "^7.61.1",
-    "@storybook/addon-actions": "^7.6.3",
-    "@storybook/addon-controls": "^7.6.3",
-    "@storybook/addon-docs": "^7.6.3",
-    "@storybook/addon-essentials": "^7.6.3",
-    "@storybook/addon-storysource": "^7.6.3",
     "@types/node": "^16.18.38",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
@@ -110,5 +107,9 @@
   },
   "eslintConfig": {
     "extends": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FuseFinance/ui-library"
   }
 }
