@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Divider } from 'antd';
 import { action } from '@storybook/addon-actions';
 import StepModalHead from '@components/Modal/stepModalHead';
 import Icon from '@/src/components/Icons';
 import { IconList } from '@/src/components/Icons/types';
-import { Divider } from 'antd';
 import BaseCodeEditor from '@components/BaseCodeEditor';
 import EditableTitle from '@/src/components/EditableTitle/editableTitle';
+import colors from '@/src/styles/colorsGlobal';
 
 
 export default {
@@ -21,13 +21,11 @@ const Template = () => {
 
   const [listBranch, setBranch] = useState([{
     id: 1,
-    label: "Branch 1",
-    isActiveInput: false
+    label: "Branch 1"
   },
   {
     id: 2,
-    label: "Branch 2",
-    isActiveInput: false
+    label: "Branch 2"
   }
   ]);
 
@@ -35,7 +33,6 @@ const Template = () => {
     setBranch([...listBranch, {
       id: listBranch[listBranch.length - 1].id + 1, 
       label: "Branch " + (listBranch.length + 1),
-      isActiveInput: false
     }]);
     action('add branch')(e);
   };
@@ -47,10 +44,8 @@ const Template = () => {
     action('remove branch')('newListBranh');
   };
 
-  const handleActiveInput = (branchId) => {
+  const handleActiveInput = () => {
     const newListBranh = [ ... listBranch]
-
-    newListBranh[branchId].isActiveInput = true;
 
     setBranch(newListBranh);
 
@@ -62,10 +57,8 @@ const Template = () => {
     action('On label change')(_newLabel);
   }; 
 
-  const onLabelChangeContent = (branchId) => {
+  const onLabelChangeContent = () => {
     const newListBranh = [ ... listBranch]
-
-    newListBranh[branchId].isActiveInput = false;
 
     setBranch(newListBranh);
   }; 
@@ -85,9 +78,9 @@ const Template = () => {
     action('click in cancel buttom')(e);
   };
 
-  const handleKeyPress = (event, index) => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
-      handleActiveInput(index)
+      handleActiveInput()
     }
   }
 
@@ -105,11 +98,9 @@ const Template = () => {
 
           listBranch.map(function(branch, index) { 
 
-            let styleConentClass = 'conent-code-input pl-4 pr-4 pb-2';
+            let styleConentClass = 'conent-code-input hover:bg-gray-50 pl-4 pr-4 pb-2';
 
             styleConentClass +=  index == 0 ? " pt-4" : " pt-1"
-
-            styleConentClass += branch.isActiveInput ? " bg-gray-50" : "";
 
             const classConentEditableText = [
               "pb-1",
@@ -120,16 +111,16 @@ const Template = () => {
             return (
             <div key={branch.id} className={styleConentClass}>
               <div className={classConentEditableText.join(' ')} >
-                <EditableTitle onSpanClick={() => handleActiveInput(index)} $size='xs' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent(index)} canEdit={true} />
+                <EditableTitle onSpanClick={() => handleActiveInput()} $size='xs' strongText='semibold' label={branch.label} onLabelChange={() => onLabelChangeContent()} canEdit={true} />
               </div> 
               <div className="flex">
-                <div role="button" onKeyDown={(event) => handleKeyPress(event, index)} tabIndex={0} onClick={ () => handleActiveInput(index) } className="flex-grow pr-1">
-                  <BaseCodeEditor placeholder='var isValid = creditScore > 10' onBlur={() => onLabelChangeContent(index)} onChange={() => onLabelChangeContent(index)} defaultValue="" />
+                <div role="button" onKeyDown={(event) => handleKeyPress(event)} tabIndex={0} onClick={ () => handleActiveInput() } className="flex-grow pr-1">
+                  <BaseCodeEditor placeholder='Enter condition' onBlur={() => onLabelChangeContent()} onChange={() => onLabelChangeContent()} defaultValue="" />
                 </div>
                 {
                   listBranch.length > 2 &&
                     <div className="flex items-center">
-                      <Icon icon={IconList.Trash} hoverFill="#0A38C2" fill="#9CA3AF" cursor="pointer" width="16px" height="16px" onClick={() => removeBranch(index)} />
+                      <Icon icon={IconList.Trash} hoverFill={colors.blue[600]} fill="#9CA3AF" cursor="pointer" width="16px" height="16px" onClick={() => removeBranch(index)} />
                     </div>
                 }
               </div>
