@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { message } from 'antd';
 import FormElements from './FormElements';
 
@@ -13,8 +13,6 @@ const meta: Meta<typeof FormElements> = {
 };
 
 export default meta;
-
-type Story = StoryObj<typeof meta>;
 
 const onHandleClickCheck = () => {
   message.info('CheckBox Clicked!');

@@ -35,3 +35,7 @@
     right: 0;
     bottom: 0;
 }
+
+.editable-title .ant-input:focus{
+    box-shadow: none;
+}

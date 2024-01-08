@@ -3,3 +3,4 @@ dist/
 
 src/**/*.test.ts
 src/**/*.test.tsx
+src/**/*.mdx

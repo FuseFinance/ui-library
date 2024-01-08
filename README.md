@@ -1,5 +1,5 @@
 # ui-library
 
-## Install project and StoryBook
+## Documentation
 
-- https://www.notion.so/Ui-Library-92faeb506e53433fa46f8fa78316dcee?pvs=4
+- https://storybook-production-fuse.netlify.app/

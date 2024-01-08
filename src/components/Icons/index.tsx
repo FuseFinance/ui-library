@@ -153,10 +153,10 @@ const Icon = ({
     setHover(false)
   } 
 
-  var classSpan = hoverFill ? "inline-block rounded p-0.8 " : ""; 
+  let classSpan = hoverFill ? "inline-block rounded p-0.8 " : ""; 
   classSpan += isHover && hoverFill ? "blog bg-gray-100" : ""; 
 
-  var colorFill = isHover && hoverFill ? hoverFill : fill;
+  const colorFill = isHover && hoverFill ? hoverFill : fill;
 
   return (
     <span className={classSpan} data-cy={testId} onClick={handleClick} role="button" tabIndex={0} aria-hidden="true">
