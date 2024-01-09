@@ -390,6 +390,10 @@ border: 3px solid transparent;
  */
 
 /* Botton */
+.ant-btn{
+  box-shadow: none;
+}
+
 .ant-btn.ant-btn-primary:disabled{
   background-color: theme('colors.blue.300');
   color: theme('colors.white');
@@ -398,6 +402,9 @@ border: 3px solid transparent;
 .ant-btn.ant-btn-sm{
   padding: 2px 16px;
   height: auto;
+}
+.ant-btn.ant-btn-default{
+  border-color: theme('colors.gray.300');
 }
 
 .ant-input{
