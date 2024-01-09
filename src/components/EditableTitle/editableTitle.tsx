@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { IEditLabelProps, WithSize } from './types';
 import { Input } from 'antd';
 import { InputRef } from 'antd/lib/input';
-import { StrongText } from '@/src/types/globalDesign/text';
+import { StrongText } from '../../types/globalDesign/text';
 import './editableTitle.css';
 
 

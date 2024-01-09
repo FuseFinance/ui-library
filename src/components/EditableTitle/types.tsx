@@ -1,4 +1,4 @@
-import { SizeGlobalValue } from '@/src/types/globalDesign/size';
+import { SizeGlobalValue } from '../../types/globalDesign/size';
 
 export interface WithSize {
   $size?: SizeGlobalValue;
