@@ -14,10 +14,8 @@ export default defineConfig({
       // AT THE MOMENT OF ADDING A NEW ALIAS, YOU MUST ADD IT TO THE tsconfig.json AND IN THE jest.config.js SO THAT THE TESTS CAN USE THE ALIAS
       '@/': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
-      '@constants': path.resolve(__dirname, './src/constants'),
       '@styles': path.resolve(__dirname, './src/styles'),
       '@types': path.resolve(__dirname, './src/types'),
-      '@utils': path.resolve(__dirname, './src/utils'),
     },
   },
   plugins: [
