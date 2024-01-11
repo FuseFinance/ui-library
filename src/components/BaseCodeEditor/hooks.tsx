@@ -21,7 +21,7 @@ import {
   getCurrentWord,
   isDot,
   isWhitespace,
-} from '@/src/components/BaseCodeEditor/codeEditorHelper';
+} from './codeEditorHelper';
 
 import { BaseCodeEditorConfig, IEditorPlugin } from './types';
 

@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import StepModalHead from '@components/Modal/stepModalHead';
 import Icon from '@/src/components/Icons';
 import { IconList } from '@/src/components/Icons/types';
-import BaseCodeEditor from '@components/BaseCodeEditor';
+import BaseCodeEditor from '@components/BaseCodeEditor/baseCodeEditor';
 import EditableTitle from '@/src/components/EditableTitle/editableTitle';
 import colors from '@/src/styles/colorsGlobal';
 
