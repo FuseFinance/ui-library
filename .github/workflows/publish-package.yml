@@ -16,6 +16,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
       - run: npm install storybook
+      - run: npm install eslint-plugin-storybook
       - run: npm install @storybook/addon-links
       - run: npm install @storybook/addon-onboarding
       - run: npm install @storybook/addon-actions
