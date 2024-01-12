@@ -1,3 +1,1 @@
-import BaseCodeEditor from './baseCodeEditor';
-
-export default BaseCodeEditor;
+export { default as BaseCodeEditor  } from './baseCodeEditor';
