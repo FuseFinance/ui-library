@@ -88,7 +88,7 @@ const Template = () => {
     <Button type="primary" onClick={showModal}>
       Open Modal
     </Button>
-    <Modal width={640} title={null} footer={null} open={isModalOpen} onCancel={handleCancel}>
+    <Modal styles={{content:{padding:0}}} width={640} title={null} footer={null} open={isModalOpen} onCancel={handleCancel}>
       <div className="head-split-path pt-2 pb-2 pl-4 pr-12">
         <StepModalHead onLabelChange={onLabelChangeHead} icon={IconList.Branch} label='Split path' />
       </div>

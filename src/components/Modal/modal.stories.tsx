@@ -29,7 +29,7 @@ const Template = (args) => {
     <Button type="primary" onClick={showModal}>
       Open Modal
     </Button>
-    <Modal {...args} title={null} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+    <Modal {...args} styles={{content:{padding:0}}} title={null} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       You content
     </Modal>
     </>)
