@@ -1,0 +1,43 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import StepModalHead from '@components/Modal/stepModalHead';
+import { IconList } from '@/src/components/Icons/types';
+
+<Meta title="Components/Modal/Modal" component={StepModalHead} />
+
+# Modal
+## Modal Import
+
+```jsx
+
+import { useState } from 'react';
+import { Button, Modal } from 'antd';
+
+```
+
+## Modal Example
+
+```jsx
+const ExampleModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = (e) => {
+    setIsModalOpen(true);
+  };
+  const handleOk = (e) => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = (e) => {
+    setIsModalOpen(false);
+  };
+
+  return (<>
+    <Button type="primary" onClick={showModal}>
+      Open Modal
+    </Button>
+    <Modal closable={false} styles={{content:{padding:0}}} title={null} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      You content
+    </Modal>
+    </>)
+
+}
+```
+
