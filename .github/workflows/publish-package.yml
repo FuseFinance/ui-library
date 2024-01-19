@@ -15,16 +15,6 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
-      - run: npm install react
-      - run: npm install storybook
-      - run: npm install eslint-plugin-storybook
-      - run: npm install @storybook/addon-links
-      - run: npm install @storybook/addon-onboarding
-      - run: npm install @storybook/addon-actions
-      - run: npm install @storybook/addon-controls
-      - run: npm install @storybook/addon-docs
-      - run: npm install @storybook/addon-essentials
-      - run: npm install @storybook/addon-storysource      
       - run: npm run build
       - run: npm publish
         env:
