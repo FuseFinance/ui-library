@@ -1,9 +1,10 @@
+import React, { forwardRef, ForwardedRef, useRef } from 'react';
 import baseTheme from './baseTheme';
-import { useBaseCodeEditorConfig } from './hooks';
+import { useBaseCodeEditorConfig, } from './hooks';
 import { BaseCodeEditorConfig, IProps } from './types';
 import './baseCodeEditor.css'
 
-const BaseCodeEditor = ({
+const BaseCodeEditor = forwardRef(({
   onChange,
   onBlur,
   value,
@@ -18,8 +19,11 @@ const BaseCodeEditor = ({
   readonly = false,
   lineWrapping,
   extensions,
-}: IProps) => {
+}: IProps, parentRef: ForwardedRef<HTMLDivElement>) => {
   
+  const internalRef = useRef();
+  const ref = parentRef || internalRef;  
+
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
     onBlur,
@@ -33,14 +37,17 @@ const BaseCodeEditor = ({
     lineWrapping,
     extensions,
     customCSSClass : "editor-code-globla-style " + customCSSClass
+    
   };
 
-  const ref = useBaseCodeEditorConfig(editorConfig);
+  useBaseCodeEditorConfig(editorConfig, ref);
   return (
     <>
       <div ref={ref} className={`overflow-hidden ${containerCSSClass || ''}`} {...customContainerAttr}/>
     </>
   );
-};
+});
+
+BaseCodeEditor.displayName = 'BaseCodeEditor';
 
 export default BaseCodeEditor;

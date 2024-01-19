@@ -1,0 +1,60 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { CodeEditorTextArea } from './';
+
+<Meta title="From/CodeEditorTextArea" component={CodeEditorTextArea} />
+
+# Code Edit
+
+## Code Edit Text Area Import
+
+```jsx
+
+import { CodeEditorTextArea } from '@fuse-finance/ui-library';
+
+
+```
+
+## Code Editor Text Area (unlimited space)
+<Canvas>
+  <CodeEditorTextArea
+    defaultValue = {"{\n  'myVar' : myVar = customVars.myOpntionOne()\n  'myNumber' : 43 \n}"}
+    onChange = {console.log}
+    customCSSClass = ''
+    placeholder='my placeholder'
+    plugins = {[
+      {
+        "name": "customVars",
+        "isModule": true,
+        "decorationClass": "code-tag code-editor-hl-formula",
+        "options": {
+            "myOpntionOne()": "customVars"
+        },
+        "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g
+      }
+    ]}    
+  />  
+</Canvas> 
+
+## Code Editor Text Area (limited space)
+<Canvas>
+  <CodeEditorTextArea
+    defaultValue = {"var myVar = customVars.myOpntionOne()"}
+    onChange = {console.log}
+    customCSSClass = ''
+    placeholder='my placeholder'
+    minHeightLines={2}
+    maxHeightLines={4.5}
+    plugins = {[
+      {
+        "name": "customVars",
+        "isModule": true,
+        "decorationClass": "code-tag code-editor-hl-formula",
+        "options": {
+            "myOpntionOne()": "customVars"
+        },
+        "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g
+      }
+    ]}    
+  />  
+</Canvas> 
+

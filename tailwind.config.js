@@ -9,7 +9,7 @@ module.exports = {
       fontFamily: {
         'sans': ['Inter', ...defaultTheme.fontFamily.sans],
         'serif': ['Inter', ...defaultTheme.fontFamily.serif],
-        'mono': ['ui-monospace', 'SFMono-Regular'],     
+        'mono': ['Source Code Pro', 'SFMono-Regular'],     
       },  
       maxWidth: {
         xxs: '15rem',

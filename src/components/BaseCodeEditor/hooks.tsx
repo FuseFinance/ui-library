@@ -107,6 +107,25 @@ const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
   };
 };
 
+
+// Define the focus event handler
+function onFocusHandler(event, view) {
+  const target = event.relatedTarget
+  if(!target){
+    return;
+  }
+
+  // Avoid blur when number zone is selected
+  if (event.relatedTarget.classList.contains("cm-scroller")) {
+    view.focus();
+  }  
+}
+
+// Create an extension that handles events
+const extensionEventHandlers = EditorView.domEventHandlers({
+  blur: onFocusHandler
+});
+
 export const useBaseCodeEditorConfig = ({
   onChange,
   onBlur,
@@ -120,20 +139,14 @@ export const useBaseCodeEditorConfig = ({
   readonly = false,
   lineWrapping = false,
   extensions,
-}: BaseCodeEditorConfig) => {
-  const [element, setElement] = useState<HTMLElement>();
+}: BaseCodeEditorConfig, externalRef) => {
+
   const [view, setView] = useState<any>();
   const { loadedCount, showSuggestions } = useLoadEditorPlugins(plugins);
 
-  const ref = useCallback((node: HTMLElement | null) => {
-    if (node) {
-      setElement(node);
-    }
-  }, []);
-
   const setupEditor = useCallback(() => {
     const view = new EditorView({
-      parent: element,
+      parent: externalRef.current
     });
 
     setupBaseExtensions(view);
@@ -150,7 +163,7 @@ export const useBaseCodeEditorConfig = ({
     }
 
     return view;
-  }, [element, defaultValue, value]);
+  }, [externalRef, defaultValue, value]);
 
   const setListeners = useCallback(
     (view: EditorView) => {
@@ -192,6 +205,7 @@ export const useBaseCodeEditorConfig = ({
         indentOnInput(),
         bracketMatching(),
         closeBrackets(),
+        extensionEventHandlers,
         keymap.of([...defaultKeymap, ...historyKeymap]),
       ];
 
@@ -234,6 +248,7 @@ export const useBaseCodeEditorConfig = ({
 
   const setupPluginsExtensions = useCallback(
     (view: EditorView) => {
+
       const extensions = [];
 
       plugins.forEach((p) => {
@@ -290,13 +305,13 @@ export const useBaseCodeEditorConfig = ({
   }, [onChange, onBlur]);
 
   useEffect(() => {
-    if (element) {
+    if (externalRef.current) {
       const view = setupEditor();
       setView(view);
 
       return () => view.destroy();
     }
-  }, [element, defaultValue]);
+  }, [externalRef, defaultValue]);
 
-  return ref;
+  // return ref;
 };
