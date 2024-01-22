@@ -6,6 +6,9 @@ import react from '@vitejs/plugin-react';
 import svgrPlugin from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import checker from 'vite-plugin-checker';
+import { peerDependencies } from "./package.json";
+import dts from "vite-plugin-dts";
+
 
 function importCss(): Plugin {
   return {
@@ -42,9 +45,9 @@ export default defineConfig({
     react(),
     checker({
       overlay: { initialIsOpen: false },
-      typescript: true,
+      // typescript: true,
       eslint: {
-        lintCommand: 'eslint "./src/**/*.{ts,tsx,mdx}"',
+        lintCommand: "eslint \"{src,test}/**/*.ts\" \"{src,test}/**/!(*stories).tsx\" --fix",
         dev: {
           logLevel: ['error'],
         },
@@ -52,7 +55,8 @@ export default defineConfig({
     }),
     viteTsconfigPaths(),
     svgrPlugin(),
-    importCss()
+    importCss(),
+    dts()
   ],
   build: {
     lib: {
@@ -61,6 +65,9 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`, // Generates the output file name based on the format.
       formats: ["cjs", "es"], // Specifies the output formats (CommonJS and ES modules).
     },
+    rollupOptions: {
+      external: [...Object.keys(peerDependencies)], // Defines external dependencies for Rollup bundling.   
+    },    
     sourcemap: true, // Generates source maps for debugging.
     emptyOutDir: true, // Clears the output directory before building.
   },

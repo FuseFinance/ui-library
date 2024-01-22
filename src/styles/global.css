@@ -406,6 +406,9 @@ border: 3px solid transparent;
 .ant-btn.ant-btn-default{
   border-color: theme('colors.gray.300');
 }
+.ant-input{
+  border-radius: 4px;
+}
 
 .ant-input{
   background-color: transparent;
@@ -442,6 +445,16 @@ border: 3px solid transparent;
 /* Form Elements */
 .ant-input{
   font-family: 'Inter', sans-serif;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  background-color: #fff;
+}
+
+.ant-input:hover, .ant-input:focus{
+  background-color: theme('colors.blue.600');
+  background-color: #fff;
 }
 
 .ant-checkbox .ant-checkbox-inner:after{
@@ -453,6 +466,11 @@ border: 3px solid transparent;
   border-bottom-color: rgb(255, 255, 255);
   width: 4.714286px;
   height: 8.142857px;  
+}
+
+
+textarea.ant-input:not(:focus)::-webkit-resizer{
+  display: block;
 }
 
 .checkbox-container .ant-checkbox-checked.ant-checkbox-disabled .ant-checkbox-inner{
@@ -506,11 +524,6 @@ border: 3px solid transparent;
 /**
  * Tailwind config
  */
- /* input */
-.ant-input{
-  border-radius: 4px;
-}
-
 /* text */
 .text-xs	{
   font-size: 0.75rem;
@@ -525,6 +538,7 @@ border: 3px solid transparent;
 }
 
 .text-lg{
+  border-bottom-style: solid;
   font-size: 1.125rem;
 }
 

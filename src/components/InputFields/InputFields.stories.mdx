@@ -1,0 +1,44 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { Input, Space } from 'antd';
+
+<Meta title="From/InputFields" />
+
+# InputField Component
+
+## InputField Component Import
+
+```jsx
+import { Input } from 'antd';
+```
+
+## Input Text
+<Canvas>
+  <Input placeholder="Single line text or predefined instruction can be added here" />
+</Canvas>
+
+## Double input Text
+<Canvas>
+  <Space.Compact className="w-full">
+    <Input
+      className="inputClass"
+      placeholder="Single line text or predefined instruction can be added here"
+      onChange={console.log}
+      disabled={false}
+    />
+    <Input
+      className="inputClass"
+      placeholder="Single line text or predefined instruction can be added here"
+      onChange={console.log}
+      disabled={false}
+    />                                  
+  </Space.Compact>   
+</Canvas>
+
+## Rich Text
+<Canvas>
+  <Input.TextArea
+    rows={5}
+    cols={10}
+    placeholder="Multiple line text or predefined instruction can be added here"
+  />
+</Canvas>
