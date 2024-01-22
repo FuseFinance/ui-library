@@ -1,6 +1,11 @@
 .editor-code-globla-style.cm-editor {
     background-color: #fff;
     border-color: theme('colors.gray.200');
+    min-height: 25px;    
+}
+
+.editor-code-globla-style.cm-editor:hover{
+    border-color: theme('colors.blue.600');
 }
 
 .editor-code-globla-style.cm-editor .cm-line{
@@ -10,8 +15,56 @@
 .editor-code-globla-style.cm-editor .cm-content{
     padding-top: 3px;
     padding-bottom: 3px;
+    padding-right: 6px;
+    padding-left: 6px;    
 }
 
 .editor-code-globla-style.cm-focused{
     border: 1px solid theme('colors.blue.600');
+}
+
+/* number line */
+.editor-code-globla-style.cm-editor .cm-foldGutter .cm-gutterElement span{
+    display: block;
+    width: 13px;
+    position: relative;
+    color: theme('colors.gray.400');
+}
+
+.editor-code-globla-style.cm-editor .cm-foldGutter .cm-gutterElement span[title="Fold line"]{
+    bottom: 3px;
+}
+
+.editor-code-globla-style.cm-editor .cm-foldGutter .cm-gutterElement span[title="Unfold line"]{
+    bottom: 1px;
+    left: 2px;
+}
+
+.editor-code-globla-style.cm-editor .cm-foldGutter .cm-gutterElement[style="height: 0px; visibility: hidden; pointer-events: none;"]{
+    display: none;
+}
+
+.editor-code-globla-style.cm-editor .cm-gutter.cm-lineNumbers {
+    color: theme('colors.gray.400');
+}
+
+.editor-code-globla-style.cm-editor .cm-lineNumbers .cm-gutterElement{
+    min-width: 20px;
+    padding-left: 0;
+    font-family: "Source Code Pro";
+}
+
+.editor-code-globla-style.cm-editor .cm-scroller > .cm-gutters{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.editor-code-globla-style.cm-editor .cm-gutters{
+    background-color: theme('colors.gray.100') !important;
+}
+
+/* active line */
+.editor-code-globla-style.cm-editor .cm-activeLineGutter{
+    background-color: transparent;
+    height: auto;
 }

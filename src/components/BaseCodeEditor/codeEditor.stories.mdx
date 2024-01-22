@@ -1,10 +1,7 @@
 import { Meta, Canvas } from '@storybook/addon-docs';
 import BaseCodeEditor from './baseCodeEditor';
 
-
 <Meta title="From/CodeEditor" component={BaseCodeEditor} />
-
-
 
 # Code Edit
 
@@ -36,26 +33,5 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
       }
     ]}    
   />  
-</Canvas>  
-
-## Code Edit Text Area
-<Canvas>
-  <BaseCodeEditor 
-    defaultValue = '{}'
-    onChange = {console.log}
-    customCSSClass = 'h-96 w-full !bg-white'
-    placeholder='my placeholder'
-    plugins = {[
-      {
-        "name": "customVars",
-        "isModule": true,
-        "decorationClass": "code-tag code-editor-hl-formula",
-        "options": {
-            "myOpntionOne()": "customVars"
-        },
-        "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g
-      }
-    ]}    
-  />
-</Canvas>
+</Canvas> 
 
