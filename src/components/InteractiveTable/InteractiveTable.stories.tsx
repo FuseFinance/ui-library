@@ -1,45 +1,65 @@
-import { Meta, Canvas } from '@storybook/addon-docs';
-import { Table, Input } from 'antd';
+import { Meta } from '@storybook/react';
+import { Input } from 'antd';
+import { InteractiveTable } from '@/src/components/InteractiveTable';
 import { BaseCodeEditor } from '@components/BaseCodeEditor';
 
-<Meta title="Form/InputTable" component={Table} />
+export default {
+  title: 'Form/InteractiveTable',
+  component: InteractiveTable
+} as Meta;
 
-# Button Component
-## Button Component Import
+const Template = (args) => {
 
-```jsx
 
-import { Table, Input } from 'antd';
-import { BaseCodeEditor } from '@fuse-finance/ui-library';
+  return (
+    <>
+      <InteractiveTable canAddRows={args.canAddRows} defaultAddInRow={args.defaultAddInRow} initTableData={args.data} initTableColumns={args.columns}>
+      </InteractiveTable>
+    </>
+  );
+};
 
-```
-
-## Input Table Component Example
-```jsx
-<Table showHeader={false} pagination={false} dataSource={[
+export const InteractiveTableExample = Template.bind({});
+InteractiveTableExample.args = {
+  defaultAddInRow: {
+    inputInput: {
+      defaultValue: "new",
+      placeholder: "key"
+    },        
+    inputCode: {
+      defaultValue: "",
+      placeholder: "value"
+    },
+    inputCodeWithText: {
+      defaultValue: "",
+      placeholder: "value"
+    },
+  },
+  canAddRows : true,
+  data: [
     {
-      key: '1',
+      key: 1,
       inputInput: {
         defaultValue: "my input",
         placeholder: "key"
       },        
       inputCode: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "value"
       },
       inputCodeWithText: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "value"
       },
     },
     {
-      key: '2',
+      key: 2,
       inputInput: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "key"
       },        
       inputCode: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "value"
       },
       inputCodeWithText: {
@@ -48,7 +68,7 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
       },      
     },
     {
-      key: '3',
+      key: 3,
       inputInput: {
         defaultValue: "my input two",
         placeholder: "key"
@@ -58,18 +78,18 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
         placeholder: "value"
       },
       inputCodeWithText: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "value"
       },      
     },
     {
-      key: '4',
+      key: 4,
       inputInput: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "key"
       }, 
       inputCode: {
-        defaultValue: undefined,
+        defaultValue: "",
         placeholder: "value"
       },
       inputCodeWithText: {
@@ -77,15 +97,17 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
         placeholder: "value"
       },      
     },    
-  ]} columns={[
+  ],
+  columns : [
     {
       dataIndex: 'inputInput',
       key: 'inputInput',
       width: '40%',
       className: 'input-type-cell',
-      render: (data) => (
-        <Input value={data.defaultValue} placeholder={data.placeholder} />
-      ),
+      render: (data) => {
+        return(
+        <Input defaultValue={data.defaultValue} placeholder={data.placeholder} />
+      )},
     },
     {
       dataIndex: 'inputCode',
@@ -93,7 +115,7 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
       className: 'input-type-cell',
       width: '40%',
       render: (data) => (
-        <BaseCodeEditor defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
+        <BaseCodeEditor maxLines={1} defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
       ),
     },
     {
@@ -104,7 +126,6 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
       render: (data) => (
         <BaseCodeEditor defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
       ),
-    },    
-  ]}>
-</Table>
-```
+    },
+  ]
+};

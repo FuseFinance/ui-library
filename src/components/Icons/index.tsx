@@ -59,6 +59,9 @@ import { ReactComponent as Bell } from './Bell.svg';
 import { ReactComponent as Loop } from './Loop.svg';
 import { ReactComponent as Aws } from './Aws.svg';
 import { ReactComponent as Upload } from './Upload.svg';
+import { ReactComponent as MenuVertiacal } from './MenuVertiacal.svg';
+import { ReactComponent as UpArrow } from './UpArrow.svg';
+import { ReactComponent as DownArrow } from './DownArrow.svg';
 
 import { IProps } from './types';
 import { useState } from 'react';
@@ -125,6 +128,9 @@ const icons = {
   Loop,
   Aws,
   Upload,
+  MenuVertiacal,
+  UpArrow,
+  DownArrow  
 };
 
 const Icon = ({

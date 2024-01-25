@@ -1,0 +1,52 @@
+/**
+ * General
+ */
+.uid-interactive-table{
+    position: relative;
+}
+
+.uid-interactive-table .add-bottom-row{
+    visibility: hidden;
+}
+
+.uid-interactive-table:hover .add-bottom-row{
+    visibility: visible;
+}
+
+/* option */
+.uid-interactive-table .uid-table-option{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+}
+
+.uid-interactive-table .uid-table-option{
+    display: none;
+}
+
+.uid-interactive-table .uid-table-option[data-is-active="true"],
+.uid-interactive-table.hover-table .uid-table-option,
+.uid-interactive-table .uid-table-option:hover{
+    display: block;
+}
+
+.uid-interactive-table .uid-table-option .uid-dropdown-content-in-table-option{
+    width: min-content;
+    position: absolute;
+    left: -9px;
+}
+
+.uid-interactive-table .uid-table-option[data-is-active="true"] .uid-dropdown-content-in-table-option .ant-dropdown-trigger{
+    background-color: theme('colors.blue.600');
+}
+
+/* line */
+.uid-interactive-table .uid-table-option .uid-option-line{
+    position: absolute;
+    width: 100%;
+    border: 1px solid theme('colors.blue.600');
+}
+
+.uid-interactive-table .uid-table-option[data-is-active="false"] .uid-option-line{
+    display: none;
+}

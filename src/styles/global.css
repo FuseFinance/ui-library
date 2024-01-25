@@ -239,10 +239,6 @@ h1 {
   }
 }
 
-.ant-input-lg {
-  @apply text-sm;
-}
-
 :where(.css-dev-only-do-not-override-2hua9e).ant-picker-large .ant-picker-input > input {
   font-size: 0.875rem !important;
 }
@@ -253,45 +249,6 @@ h1 {
 
 .ant-picker-input {
   @apply text-sm font-medium;
-}
-
-.api-dropdown .ant-input {
-  @apply rounded-l-none border-l-0;
-}
-
-.ant-input {
-  @apply border-gray-200;
-}
-
-.ant-dropdown-trigger {
-  @apply border-gray-300 shadow-none;
-}
-
-.ant-dropdown-menu-title-content {
-  @apply capitalize;
-}
-
-.env-dropdown-production .ant-btn-default:hover {
-  color: #fff !important;
-  border-color: #7e3af2 !important;
-}
-
-.env-dropdown-sandbox .ant-btn-default {
-  @apply border-blue-600 bg-blue-100 text-blue-600 hover:bg-blue-600;
-}
-
-.env-dropdown-sandbox .ant-btn-default:hover {
-  color: #fff !important;
-  border-color: #0a38c2 !important;
-}
-
-.env-dropdown-development .ant-btn-default {
-  @apply border-[#be185d] bg-[#fce7f3] text-[#be185d] hover:bg-[#be185d];
-}
-
-.env-dropdown-development .ant-btn-default:hover {
-  color: #fff !important;
-  border-color: #be185d !important;
 }
 
 .cm-content {
@@ -475,12 +432,21 @@ border: 3px solid transparent;
   border-color: theme('colors.gray.300');
 }
 
+/* Inputs */
 .ant-input{
   border-radius: 4px;
 }
 
 .ant-input{
   background-color: transparent;
+}
+
+.ant-input-lg {
+  @apply text-sm;
+}
+.ant-input {
+  @apply border-gray-200;
+  @apply text-xs;
 }
 
 /* Modal */
@@ -592,6 +558,46 @@ textarea.ant-input:not(:focus)::-webkit-resizer{
 /* Calendar */
 .ant-picker-calendar .ant-picker-panel .ant-picker-date-panel .ant-picker-body{
   padding-bottom: 0;
+}
+
+/* Dropdown */
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item .ant-dropdown-menu-title-content{
+  text-transform: none;
+  font-size: 12px
+}
+
+.api-dropdown .ant-input {
+  @apply rounded-l-none border-l-0;
+}
+.ant-dropdown-trigger {
+  @apply border-gray-300 shadow-none;
+}
+
+.ant-dropdown-menu-title-content {
+  @apply capitalize;
+}
+
+.env-dropdown-production .ant-btn-default:hover {
+  color: #fff !important;
+  border-color: #7e3af2 !important;
+}
+
+.env-dropdown-sandbox .ant-btn-default {
+  @apply border-blue-600 bg-blue-100 text-blue-600 hover:bg-blue-600;
+}
+
+.env-dropdown-sandbox .ant-btn-default:hover {
+  color: #fff !important;
+  border-color: #0a38c2 !important;
+}
+
+.env-dropdown-development .ant-btn-default {
+  @apply border-[#be185d] bg-[#fce7f3] text-[#be185d] hover:bg-[#be185d];
+}
+
+.env-dropdown-development .ant-btn-default:hover {
+  color: #fff !important;
+  border-color: #be185d !important;
 }
 
 /* Table */
