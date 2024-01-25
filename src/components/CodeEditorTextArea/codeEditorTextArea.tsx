@@ -31,19 +31,19 @@ const EditorTextArea = ({
   useEffect(() => {
     // add default height
 
-    const paddingHeight = 8;
+    const paddingHeight = 9;
     const lineHeight = 18;
 
     if(editorRef.current && minHeightLines != null){
       
-      editorRef.current.querySelector(".cm-editor").style.minHeight = ((minHeightLines * lineHeight) + paddingHeight) + "px";
+      editorRef.current.querySelector(".cm-editor").style.minHeight = ((minHeightLines * lineHeight) + (paddingHeight * 2)) + "px";
 
     }
 
     // add max height
     if(editorRef.current && maxHeightLines != null){
       
-      editorRef.current.querySelector(".cm-editor").style.maxHeight = ((maxHeightLines * lineHeight) + paddingHeight) + "px";
+      editorRef.current.querySelector(".cm-editor").style.maxHeight = ((maxHeightLines * lineHeight) + paddingHeight + 1) + "px";
 
     }    
   }, [editorRef]);

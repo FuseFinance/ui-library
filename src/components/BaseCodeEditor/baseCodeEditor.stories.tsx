@@ -3,7 +3,7 @@ import BaseCodeEditor from './baseCodeEditor';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'From/CodeEditor',
+  title: 'Form/CodeEditor',
   component: BaseCodeEditor,
   args:{
     defaultValue: undefined,

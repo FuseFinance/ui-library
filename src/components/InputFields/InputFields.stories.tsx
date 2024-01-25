@@ -4,7 +4,7 @@ import InputFields from './InputFields';
 
 const meta: Meta<typeof InputFields> = {
   component: InputFields,
-  title: 'From/InputFields',
+  title: 'Form/InputFields',
   // tags:['autodocs'],
   argTypes: {
     disabled: {

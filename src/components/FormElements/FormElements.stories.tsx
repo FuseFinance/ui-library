@@ -4,7 +4,7 @@ import FormElements from './FormElements';
 
 const meta: Meta<typeof FormElements> = {
   component: FormElements,
-  title: 'From/FormElements',
+  title: 'Form/FormElements',
   argTypes: {
     disabled: {
       control: 'boolean',

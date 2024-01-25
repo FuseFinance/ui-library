@@ -3,7 +3,7 @@ import { CodeEditorTextArea } from './';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'From/CodeEditorTextArea',
+  title: 'Form/CodeEditorTextArea',
   component: CodeEditorTextArea,
   args:{
     defaultValue: undefined,
