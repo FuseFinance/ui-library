@@ -43,7 +43,7 @@ const BaseCodeEditor = forwardRef(({
   useBaseCodeEditorConfig(editorConfig, ref);
   return (
     <>
-      <div ref={ref} className={`overflow-hidden ${containerCSSClass || ''}`} {...customContainerAttr}/>
+      <div ref={ref} className={`content-editor-code-globla-style overflow-hidden ${containerCSSClass || ''}`} {...customContainerAttr}/>
     </>
   );
 });

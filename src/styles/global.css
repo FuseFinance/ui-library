@@ -260,7 +260,7 @@ h1 {
 }
 
 .ant-input {
-  @apply border-gray-300;
+  @apply border-gray-200;
 }
 
 .ant-dropdown-trigger {
@@ -470,9 +470,11 @@ border: 3px solid transparent;
   padding: 2px 16px;
   height: auto;
 }
+
 .ant-btn.ant-btn-default{
   border-color: theme('colors.gray.300');
 }
+
 .ant-input{
   border-radius: 4px;
 }
@@ -512,11 +514,15 @@ border: 3px solid transparent;
 /* Form Elements */
 .ant-input{
   font-family: 'Inter', sans-serif;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 8px;
+  padding-left: 8px;
   background-color: #fff;
+}
+
+.ant-input::placeholder{
+  color: theme('colors.gray.400');
 }
 
 .ant-input:hover, .ant-input:focus{
@@ -586,6 +592,72 @@ textarea.ant-input:not(:focus)::-webkit-resizer{
 /* Calendar */
 .ant-picker-calendar .ant-picker-panel .ant-picker-date-panel .ant-picker-body{
   padding-bottom: 0;
+}
+
+/* Table */
+.ant-table-wrapper .ant-table{
+  border-radius: 6px;
+}
+
+.ant-table-container .input-type-cell.ant-table-cell{
+  padding: 0;
+  height: 0;
+  border: none;
+}
+
+.ant-table-wrapper table {
+  table-layout: fixed !important;
+}
+
+/* Table with input (general)*/
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell > input,
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell .content-editor-code-globla-style{
+  height: calc(100% + 1px);
+  width: calc(100% + 1px);
+  display: flex;
+  min-height: 36px;
+
+}
+
+.ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell > input,
+.ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell .content-editor-code-globla-style{
+  margin-top: -1px;
+}
+
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell > input:hover,
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell > input:focus,
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell .cm-editor:hover,
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell .cm-editor.cm-focused{
+  z-index: 1;
+}
+
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell > input,
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell .cm-editor{
+  border-radius: 0;
+}
+
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell .cm-editor{
+  width: 100%;
+}
+
+.ant-table-container .ant-table-row:first-child .input-type-cell.ant-table-cell:first-child > input,
+.ant-table-container .ant-table-row:first-child .input-type-cell.ant-table-cell:first-child .cm-editor{
+  border-top-left-radius: 6px;
+}
+
+.ant-table-container .ant-table-row:first-child .input-type-cell.ant-table-cell:last-child > input,
+.ant-table-container .ant-table-row:first-child .input-type-cell.ant-table-cell:last-child .cm-editor{
+  border-top-right-radius: 6px;
+}
+
+.ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell:last-child > input,
+.ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell:last-child .cm-editor{
+  border-bottom-right-radius: 6px;
+}
+
+.ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell:first-child > input,
+.ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell:first-child .cm-editor{
+  border-bottom-left-radius: 6px;
 }
 
 /**
