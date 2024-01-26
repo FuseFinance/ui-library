@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs';
 import BaseCodeEditor from './baseCodeEditor';
+import { javascript } from '@codemirror/lang-javascript';
 
 <Meta title="Form/CodeEditor" component={BaseCodeEditor} />
 
@@ -17,10 +18,36 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
 ## Code Edit In Line
 <Canvas>
   <BaseCodeEditor
+    defaultValue = 'https://myweb.com/api/{{varName}}'
+    onChange = {console.log}
+    customCSSClass = ''
+    placeholder='my placeholder'
+    maxLines={1}
+    plugins = {[
+      {
+        "name": "interpolations",
+        "isModule": true,
+        "decorationClass": "code-tag code-editor-hl-interpolations",
+        "options": {},
+        "matchRegex": /\{\{\s*([^}}]*?)\s*\}\}/g
+      }
+    ]}    
+  />  
+</Canvas> 
+
+## Code Edit In Line With JavaScript
+```jsx
+import { javascript } from '@codemirror/lang-javascript';
+```
+
+<Canvas>
+  <BaseCodeEditor
     defaultValue = 'var myVar = customVars.myOpntionOne()'
     onChange = {console.log}
     customCSSClass = ''
     placeholder='my placeholder'
+    maxLines={1}
+    extensions= {[javascript()]}
     plugins = {[
       {
         "name": "customVars",
@@ -34,4 +61,3 @@ import { BaseCodeEditor } from '@fuse-finance/ui-library';
     ]}    
   />  
 </Canvas> 
-

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { get } from 'lodash';
-import { javascript } from '@codemirror/lang-javascript';
 import { autocompletion, closeBrackets } from '@codemirror/autocomplete';
 import { indentOnInput, bracketMatching, foldGutter } from '@codemirror/language';
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
@@ -197,7 +196,6 @@ export const useBaseCodeEditorConfig = ({
     (view: EditorView) => {
       const baseExtensions = [
         theme,
-        javascript(),
         ph(placeholder),
         history(),
         foldGutter(),

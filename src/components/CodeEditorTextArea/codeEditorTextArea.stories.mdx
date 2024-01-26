@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs';
 import { CodeEditorTextArea } from './';
+import { javascript } from '@codemirror/lang-javascript';
 
 <Meta title="Form/CodeEditorTextArea" component={CodeEditorTextArea} />
 
@@ -10,7 +11,7 @@ import { CodeEditorTextArea } from './';
 ```jsx
 
 import { CodeEditorTextArea } from '@fuse-finance/ui-library';
-
+import { javascript } from '@codemirror/lang-javascript';
 
 ```
 
@@ -21,6 +22,7 @@ import { CodeEditorTextArea } from '@fuse-finance/ui-library';
     onChange = {console.log}
     customCSSClass = ''
     placeholder='my placeholder'
+    extensions = {[javascript()]}
     plugins = {[
       {
         "name": "customVars",
@@ -44,6 +46,7 @@ import { CodeEditorTextArea } from '@fuse-finance/ui-library';
     placeholder='my placeholder'
     minHeightLines={2}
     maxHeightLines={4.5}
+    extensions = {[javascript()]}
     plugins = {[
       {
         "name": "customVars",

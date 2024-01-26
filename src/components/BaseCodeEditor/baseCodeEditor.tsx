@@ -23,7 +23,7 @@ const BaseCodeEditor = forwardRef(({
   
   const internalRef = useRef();
   const ref = parentRef || internalRef;  
-
+  
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
     onBlur,

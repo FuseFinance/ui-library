@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/react';
 import { CodeEditorTextArea } from './';
 import { action } from '@storybook/addon-actions';
+import { javascript } from '@codemirror/lang-javascript';
 
 export default {
   title: 'Form/CodeEditorTextArea',
@@ -31,6 +32,11 @@ export default {
       control: 'text', 
       defaultValue: undefined
     },
+    extensions: { // remove option
+      table: {
+        disable: true,
+      },
+    },    
     customCSSClass: { control: 'text' },
     containerCSSClass: { control: 'text' },
     customContainerAttr: { control: 'object' },
@@ -48,9 +54,10 @@ const handleChange = (e) => {
   action('change input')(e);
 };
 
-export const CodeEditorInLine = Template.bind({});
-CodeEditorInLine.args = {
+export const CodeEditorTextAreaExample = Template.bind({});
+CodeEditorTextAreaExample.args = {
   defaultValue: "{\n\n}",
   onChange: handleChange,
-  placeholder: "{}",  
+  placeholder: "{}",
+  extensions: [javascript()]
 };
