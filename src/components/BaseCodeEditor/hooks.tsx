@@ -108,26 +108,22 @@ const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
 
 
 // Define the focus event handler
-function onFocusHandler(event, view) {
-  const target = event.relatedTarget
-  if(!target){
+function onBlurHandler(event, view, onBlur) {
+  // Avoid blur when number zone is selected
+  if (event.relatedTarget && event.relatedTarget.classList.contains("cm-scroller")) {
+    view.focus();
     return;
   }
 
-  // Avoid blur when number zone is selected
-  if (event.relatedTarget.classList.contains("cm-scroller")) {
-    view.focus();
-  }  
+  if(onBlur){
+    onBlur(event, view);
+  }
 }
-
-// Create an extension that handles events
-const extensionEventHandlers = EditorView.domEventHandlers({
-  blur: onFocusHandler
-});
 
 export const useBaseCodeEditorConfig = ({
   onChange,
   onBlur,
+  onFocus,
   value,
   plugins,
   placeholder,
@@ -170,10 +166,7 @@ export const useBaseCodeEditorConfig = ({
         const content = vu.state.doc.toString();
         if (onChange && vu.docChanged) {
           onChange(content);
-        }
-        if (onBlur && vu.focusChanged) {
-          onBlur(content);
-        }
+        }      
       });
 
       view.dispatch({
@@ -194,6 +187,19 @@ export const useBaseCodeEditorConfig = ({
 
   const setupBaseExtensions = useCallback(
     (view: EditorView) => {
+      // Dom event handlers
+      const extensionEventHandlers = EditorView.domEventHandlers({
+        blur: (event, view) => {
+           onBlurHandler(event, view, onBlur);
+        },
+        focus: (event, view) => {
+          if(onFocus){
+            onFocus(event, view); 
+          }
+        }
+      });
+
+      // Define base extensions
       const baseExtensions = [
         theme,
         ph(placeholder),
@@ -311,5 +317,4 @@ export const useBaseCodeEditorConfig = ({
     }
   }, [externalRef, defaultValue]);
 
-  // return ref;
 };

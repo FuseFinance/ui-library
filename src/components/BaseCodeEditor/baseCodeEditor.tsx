@@ -7,6 +7,7 @@ import './baseCodeEditor.css'
 const BaseCodeEditor = forwardRef(({
   onChange,
   onBlur,
+  onFocus,
   value,
   plugins = [],
   customCSSClass = "",
@@ -27,6 +28,7 @@ const BaseCodeEditor = forwardRef(({
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
     onBlur,
+    onFocus,
     value,
     placeholder,
     theme,

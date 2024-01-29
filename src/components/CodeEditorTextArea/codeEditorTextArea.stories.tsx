@@ -25,7 +25,8 @@ export default {
     containerCSSClass : undefined,
     customContainerAttr : undefined,
     minHeightLines : null,
-    maxHeightLines : null
+    maxHeightLines : null,
+    lineWrapping: false
   },
   argTypes: {
     defaultValue: { 
@@ -36,7 +37,7 @@ export default {
       table: {
         disable: true,
       },
-    },    
+    },
     customCSSClass: { control: 'text' },
     containerCSSClass: { control: 'text' },
     customContainerAttr: { control: 'object' },
@@ -59,5 +60,5 @@ CodeEditorTextAreaExample.args = {
   defaultValue: "{\n\n}",
   onChange: handleChange,
   placeholder: "{}",
-  extensions: [javascript()]
+  extensions: [javascript()],
 };

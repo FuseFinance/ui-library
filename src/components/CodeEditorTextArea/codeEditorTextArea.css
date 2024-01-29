@@ -1,6 +1,6 @@
-/* .editor-code-text-area-globla-style.cm-editor:not(.cm-focused) .cm-gutters{
+.editor-code-text-area-globla-style.cm-editor:not(.cm-focused) .cm-gutters{
     display: none;
-} */
+}
 
 .editor-code-text-area-globla-style.cm-editor{
     resize: block;
