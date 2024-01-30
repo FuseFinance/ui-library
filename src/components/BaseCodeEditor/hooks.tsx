@@ -22,6 +22,7 @@ import {
   isWhitespace,
 } from './codeEditorHelper';
 
+
 import { BaseCodeEditorConfig, IEditorPlugin } from './types';
 
 const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
@@ -132,10 +133,12 @@ export const useBaseCodeEditorConfig = ({
   maxLines,
   defaultValue,
   readonly = false,
-  lineWrapping = false,
   extensions,
-}: BaseCodeEditorConfig, externalRef) => {
-
+  lineWrapping = false,
+  minHeightLines,
+  maxHeightLines  
+}: BaseCodeEditorConfig, externalRef: React.MutableRefObject<HTMLDivElement>, refContentAfter: React.MutableRefObject<HTMLDivElement>) => {
+  const [countReloadForBlue, setCountReloadForBlue] = useState<number>(0);
   const [view, setView] = useState<any>();
   const { loadedCount, showSuggestions } = useLoadEditorPlugins(plugins);
 
@@ -147,6 +150,8 @@ export const useBaseCodeEditorConfig = ({
     setupBaseExtensions(view);
     setupPluginsExtensions(view);
     setupAutoCompletionExtension(view);
+    setupAdditionalContent(view);
+    setupSizes(view);
     setListeners(view);
 
     const editorValue = defaultValue !== undefined ? defaultValue : value;
@@ -190,9 +195,15 @@ export const useBaseCodeEditorConfig = ({
       // Dom event handlers
       const extensionEventHandlers = EditorView.domEventHandlers({
         blur: (event, view) => {
-           onBlurHandler(event, view, onBlur);
+          let newCountReloadForBlue = countReloadForBlue;
+
+          newCountReloadForBlue++
+
+          setCountReloadForBlue(newCountReloadForBlue) 
+          onBlurHandler(event, view, onBlur);
         },
         focus: (event, view) => {
+         
           if(onFocus){
             onFocus(event, view); 
           }
@@ -220,6 +231,10 @@ export const useBaseCodeEditorConfig = ({
         baseExtensions.push(EditorView.editorAttributes.of({ class: customCSSClass }));
       }
 
+      if(lineWrapping){
+        baseExtensions.push(EditorView.lineWrapping)
+      }
+
       baseExtensions.push(
         EditorView.contentAttributes.of({
           'data-enable-grammarly': 'false',
@@ -239,10 +254,6 @@ export const useBaseCodeEditorConfig = ({
         baseExtensions.push(EditorState.readOnly.of(true));
       }
 
-      if (lineWrapping) {
-        baseExtensions.push(EditorView.lineWrapping);
-      }
-
       view.dispatch({
         effects: baseExtensions.map(buildEffectAppendConfig),
       });
@@ -252,7 +263,6 @@ export const useBaseCodeEditorConfig = ({
 
   const setupPluginsExtensions = useCallback(
     (view: EditorView) => {
-
       const extensions = [];
 
       plugins.forEach((p) => {
@@ -292,23 +302,80 @@ export const useBaseCodeEditorConfig = ({
     [view, showSuggestions],
   );
 
+
+  const setupAdditionalContent = useCallback(
+    (view: EditorView) => {
+      if(!view.dom || !refContentAfter.current){
+        return;
+      }
+      
+      const contentAfterWidth = refContentAfter.current.offsetWidth;
+      
+      // get code editor content dom
+      const editorCodeContent: HTMLDivElement = view.dom.querySelector(".cm-content");
+
+      // restar padding
+      editorCodeContent.style.paddingRight = null;
+
+      // get current padding right
+      const editorCodeContentStyles = window.getComputedStyle(editorCodeContent);
+
+      const editorCodeContentPaddingRight = parseInt(editorCodeContentStyles.getPropertyValue('padding-right'));
+
+      editorCodeContent.style.paddingRight = (editorCodeContentPaddingRight + contentAfterWidth) + "px"
+
+    },
+    [view, refContentAfter],
+  );
+
+  const setupSizes = useCallback(
+    (view: EditorView) => {
+      if(!view.dom){
+        return;
+      }
+  
+      // add default height
+      const paddingHeight = 9;
+      const lineHeight = 16;
+  
+      if(minHeightLines != null){
+        
+        view.dom.style.minHeight = ((minHeightLines * lineHeight) + (paddingHeight * 2)) + "px";
+  
+      }
+  
+      // add max height
+      if(maxHeightLines != null){
+              
+        view.dom.style.maxHeight = ((maxHeightLines * lineHeight) + paddingHeight + 1) + "px";
+  
+      }
+
+    },
+    [view, minHeightLines, maxHeightLines],
+  );
+
   useEffect(() => {
     if (loadedCount > 0) {
       resetEditor(view);
       setupBaseExtensions(view);
       setupPluginsExtensions(view);
       setupAutoCompletionExtension(view);
+      setupAdditionalContent(view);
+      setupSizes(view);
       setListeners(view);
     }
   }, [loadedCount, showSuggestions]);
 
   useEffect(() => {
+
     if ((onChange || onBlur) && view) {
       setListeners(view);
     }
   }, [onChange, onBlur]);
 
   useEffect(() => {
+
     if (externalRef.current) {
       const view = setupEditor();
       setView(view);

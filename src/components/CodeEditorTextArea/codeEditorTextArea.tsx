@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { IProps } from './types';
 import { BaseCodeEditorConfig } from '@components/BaseCodeEditor/types';
 import { BaseCodeEditor } from '@components/BaseCodeEditor'
@@ -22,32 +22,14 @@ const EditorTextArea = ({
   customContainerAttr,
   readonly = false,
   lineWrapping,
+  contentAfter,
   extensions = [],
+  positionCenterContentAfter = "top"
 }: IProps) => {
   const editorRef = useRef(null);
 
   extensions.push(lineNumbers())
   extensions.push(highlightActiveLineGutter())
-
-  useEffect(() => {
-    // add default height
-
-    const paddingHeight = 9;
-    const lineHeight = 16;
-
-    if(editorRef.current && minHeightLines != null){
-      
-      editorRef.current.querySelector(".cm-editor").style.minHeight = ((minHeightLines * lineHeight) + (paddingHeight * 2)) + "px";
-
-    }
-
-    // add max height
-    if(editorRef.current && maxHeightLines != null){
-      
-      editorRef.current.querySelector(".cm-editor").style.maxHeight = ((maxHeightLines * lineHeight) + paddingHeight + 1) + "px";
-
-    }    
-  }, [editorRef]);
 
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
@@ -64,7 +46,11 @@ const EditorTextArea = ({
     extensions,
     customCSSClass : "editor-code-text-area-globla-style " + customCSSClass,
     customContainerAttr,
-    containerCSSClass
+    containerCSSClass,
+    contentAfter,
+    maxHeightLines,
+    minHeightLines,
+    positionCenterContentAfter
   };
 
   return (<BaseCodeEditor ref={editorRef} {...editorConfig}></BaseCodeEditor>)

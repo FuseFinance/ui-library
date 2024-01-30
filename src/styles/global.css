@@ -653,13 +653,17 @@ textarea.ant-input:not(:focus)::-webkit-resizer{
 }
 
 /* Table with input (general)*/
+.ant-table-container .ant-table-row .input-type-cell.ant-table-cell .content-editor-code-all{
+    display: contents;
+    position: relative;
+}
+
 .ant-table-container .ant-table-row .input-type-cell.ant-table-cell > input,
 .ant-table-container .ant-table-row .input-type-cell.ant-table-cell .content-editor-code-globla-style{
   height: calc(100% + 1px);
   width: calc(100% + 1px);
   display: flex;
-  min-height: 36px;
-
+  min-height: 34px;
 }
 
 .ant-table-container .ant-table-row:last-child .input-type-cell.ant-table-cell > input,

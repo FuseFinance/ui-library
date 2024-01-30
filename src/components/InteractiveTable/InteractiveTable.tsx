@@ -246,7 +246,7 @@ const InteractiveTable = ({
         </div>
         }   
         {
-        canEdit && canAddRows && <div className='add-bottom-row z-10 absolute w-full pt-0.9 pb-1'>
+        canEdit && canAddRows && <div className='add-bottom-row absolute w-full pt-0.9 pb-1'>
             <div className='bg-gray-200 w-full rounded flex justify-center p-0.9' role='button' onKeyDown={() => {handleInsertDown(tableData[tableData.length - 1].key, tableData, defaultAddInRow)}} tabIndex={0} onClick={() => {handleInsertDown(tableData[tableData.length - 1].key, tableData, defaultAddInRow)}} {...customAttrAddRow}> 
                 <Icon icon={IconList.Plus} fill={color.gray[400]} cursor="pointer" width="8px" height="8px" />
             </div>
