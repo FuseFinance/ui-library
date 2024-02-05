@@ -32,7 +32,7 @@ const EditorTextArea = ({
     // add default height
 
     const paddingHeight = 9;
-    const lineHeight = 18;
+    const lineHeight = 16;
 
     if(editorRef.current && minHeightLines != null){
       

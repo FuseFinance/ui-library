@@ -22,6 +22,7 @@
       "@/*": ["./*"],
       "@components/*": ["./src/components/*"],
       "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
       "@types_fuse/*": ["./src/types/*"],
       "@tests/*": ["./__tests__/*"]
     }

@@ -3,7 +3,7 @@ import { Table, Input } from 'antd';
 import { BaseCodeEditor } from '@components/BaseCodeEditor';
 
 export default {
-  title: 'Form/Table',
+  title: 'Form/InputTable',
   component: Table
 } as Meta;
 
@@ -98,7 +98,7 @@ InputTable.args = {
       className: 'input-type-cell',
       width: '40%',
       render: (data) => (
-        <BaseCodeEditor defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
+        <BaseCodeEditor maxLines={1} defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
       ),
     },
     {
@@ -107,7 +107,7 @@ InputTable.args = {
       className: 'input-type-cell',
       width: '20%',
       render: (data) => (
-        <BaseCodeEditor defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
+        <BaseCodeEditor maxLines={1} defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
       ),
     },    
   ]

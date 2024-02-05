@@ -61,6 +61,9 @@ export enum IconList {
   Loop = 'Loop',
   Aws = 'Aws',
   Upload = 'Upload',
+  MenuVertiacal = 'MenuVertiacal',
+  UpArrow = 'UpArrow',
+  DownArrow = 'DownArrow'
 }
 
 export interface IProps {

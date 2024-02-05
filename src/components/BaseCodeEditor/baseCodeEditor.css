@@ -10,6 +10,7 @@
 
 .editor-code-globla-style.cm-editor .cm-line{
     padding-left: 0;
+    @apply text-xs;
 }
 
 .editor-code-globla-style.cm-editor .cm-content{
