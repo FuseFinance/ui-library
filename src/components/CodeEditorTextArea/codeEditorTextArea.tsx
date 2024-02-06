@@ -8,6 +8,7 @@ import './codeEditorTextArea.css'
 const EditorTextArea = ({
   onChange,
   onBlur,
+  onFocus,
   value,
   plugins = [],
   customCSSClass = "",
@@ -51,6 +52,7 @@ const EditorTextArea = ({
   const editorConfig: BaseCodeEditorConfig = {
     onChange,
     onBlur,
+    onFocus,
     value,
     placeholder,
     theme,

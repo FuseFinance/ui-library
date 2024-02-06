@@ -11,9 +11,9 @@ const StepModalHead: React.FC<StepModalHeadProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-x-3">
-      <Icon fill='#0A38C2' icon={icon} />
+      <Icon width='16px' height='16px' fill='#0A38C2' icon={icon} />
 
-      <EditableTitle $size='base' strongText='semibold' canEdit={true} label={label} onLabelChange={onLabelChange} />
+      <EditableTitle $size='xs' strongText='semibold' canEdit={true} label={label} onLabelChange={onLabelChange} />
       
     </div>
   );

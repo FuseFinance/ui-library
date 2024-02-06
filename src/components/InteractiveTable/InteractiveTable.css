@@ -33,7 +33,7 @@
 .uid-interactive-table .uid-table-option .uid-dropdown-content-in-table-option{
     width: min-content;
     position: absolute;
-    left: -9px;
+    left: -7px;
 }
 
 .uid-interactive-table .uid-table-option[data-is-active="true"] .uid-dropdown-content-in-table-option .ant-dropdown-trigger{

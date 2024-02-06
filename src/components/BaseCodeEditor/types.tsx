@@ -1,5 +1,7 @@
 /* eslint-disable-next-line import/named */
 import { Extension } from '@codemirror/state';
+import { EditorView } from '@codemirror/view';
+
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
@@ -7,7 +9,8 @@ export type PluginPrecedence = 'highest' | 'high' | 'default' | 'low' | 'lowest'
 
 export type BaseCodeEditorConfig = {
   onChange?: (_value: string) => void;
-  onBlur?: (_value: any) => void;
+  onBlur?: (_event: any, _view: EditorView) => void;
+  onFocus?: (_event: any, _view: EditorView) => void;
   placeholder: string;
   theme: any;
   value?: string;
