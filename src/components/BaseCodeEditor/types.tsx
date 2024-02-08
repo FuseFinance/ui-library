@@ -1,8 +1,9 @@
 /* eslint-disable-next-line import/named */
 import { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
-import { ReactNode  } from 'react';
+import { ReactNode } from 'react';
 
+import { FUNCTIONAL_INPUT_TYPE } from '../ComplexInput/types';
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
@@ -24,11 +25,13 @@ export type BaseCodeEditorConfig = {
   lineWrapping?: boolean;
   customContainerAttr?: Record<string, string>;
   extensions?: Extension[];
-  positionCenterContentAfter?: "top" | "center" | "bottom"; 
-  resizingAboveElements?: boolean; 
+  positionCenterContentAfter?: 'top' | 'center' | 'bottom';
+  resizingAboveElements?: boolean;
   maxHeightLines?: number;
   minHeightLines?: number;
-  contentAfter?: ReactNode
+  contentAfter?: ReactNode;
+  type?: FUNCTIONAL_INPUT_TYPE;
+  hasNumberLines?: boolean;
 };
 
 export interface IEditorPlugin {

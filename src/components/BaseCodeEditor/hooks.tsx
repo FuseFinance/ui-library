@@ -22,7 +22,6 @@ import {
   isWhitespace,
 } from './codeEditorHelper';
 
-
 import { BaseCodeEditorConfig, IEditorPlugin } from './types';
 
 const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
@@ -107,44 +106,49 @@ const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
   };
 };
 
-
 // Define the focus event handler
 function onBlurHandler(event, view, onBlur) {
   // Avoid blur when number zone is selected
-  if (event.relatedTarget && event.relatedTarget.classList.contains("cm-scroller")) {
+  if (event.relatedTarget && event.relatedTarget.classList.contains('cm-scroller')) {
     view.focus();
     return;
   }
 
-  if(onBlur){
+  if (onBlur) {
     onBlur(event, view);
   }
 }
 
-export const useBaseCodeEditorConfig = ({
-  onChange,
-  onBlur,
-  onFocus,
-  value,
-  plugins,
-  placeholder,
-  theme,
-  customCSSClass,
-  maxLines,
-  defaultValue,
-  readonly = false,
-  extensions,
-  lineWrapping = false,
-  minHeightLines,
-  maxHeightLines  
-}: BaseCodeEditorConfig, externalRef: React.MutableRefObject<HTMLDivElement>, refContentAfter: React.MutableRefObject<HTMLDivElement>) => {
+export const useBaseCodeEditorConfig = (
+  {
+    onChange,
+    onBlur,
+    onFocus,
+    value,
+    plugins,
+    placeholder,
+    theme,
+    customCSSClass,
+    maxLines,
+    defaultValue,
+    readonly = false,
+    extensions,
+    lineWrapping = false,
+    minHeightLines,
+    maxHeightLines,
+  }: BaseCodeEditorConfig,
+  externalRef: React.MutableRefObject<HTMLDivElement>,
+  refContentAfter: React.MutableRefObject<HTMLDivElement>,
+) => {
   const [countReloadForBlue, setCountReloadForBlue] = useState<number>(0);
   const [view, setView] = useState<any>();
   const { loadedCount, showSuggestions } = useLoadEditorPlugins(plugins);
+  const [width, setWidth] = useState('');
+  const [isInputActive, setIsInputActive] = useState(false);
 
   const setupEditor = useCallback(() => {
     const view = new EditorView({
-      parent: externalRef.current
+      parent: externalRef.current,
     });
 
     setupBaseExtensions(view);
@@ -168,10 +172,17 @@ export const useBaseCodeEditorConfig = ({
   const setListeners = useCallback(
     (view: EditorView) => {
       const extension = EditorView.updateListener.of((vu: ViewUpdate) => {
+        // Set initial height in the editor, because when the editor has content larger than the minimum size, it is displayed in full instead of showing only 3 lines
+        view.dom.classList.add('h-10');
+
         const content = vu.state.doc.toString();
+        const editorWidth = (vu.view as any)?.viewState?.editorWidth;
+
+        if (editorWidth) setWidth(`${editorWidth}px`);
+
         if (onChange && vu.docChanged) {
           onChange(content);
-        }      
+        }
       });
 
       view.dispatch({
@@ -197,17 +208,26 @@ export const useBaseCodeEditorConfig = ({
         blur: (event, view) => {
           let newCountReloadForBlue = countReloadForBlue;
 
-          newCountReloadForBlue++
+          newCountReloadForBlue++;
 
-          setCountReloadForBlue(newCountReloadForBlue) 
+          setCountReloadForBlue(newCountReloadForBlue);
           onBlurHandler(event, view, onBlur);
         },
         focus: (event, view) => {
-         
-          if(onFocus){
-            onFocus(event, view); 
+          if (onFocus) {
+            onFocus(event, view);
           }
-        }
+        },
+        focusin: () => {
+          setIsInputActive(true);
+        },
+        focusout: () => {
+          setIsInputActive(false);
+
+          // Set the default style
+          view.dom.style.setProperty('height', '60px', 'important');
+          view.dom.style.setProperty('width', '100%', 'important');
+        },
       });
 
       // Define base extensions
@@ -231,8 +251,8 @@ export const useBaseCodeEditorConfig = ({
         baseExtensions.push(EditorView.editorAttributes.of({ class: customCSSClass }));
       }
 
-      if(lineWrapping){
-        baseExtensions.push(EditorView.lineWrapping)
+      if (lineWrapping) {
+        baseExtensions.push(EditorView.lineWrapping);
       }
 
       baseExtensions.push(
@@ -302,17 +322,16 @@ export const useBaseCodeEditorConfig = ({
     [view, showSuggestions],
   );
 
-
   const setupAdditionalContent = useCallback(
     (view: EditorView) => {
-      if(!view.dom || !refContentAfter.current){
+      if (!view.dom || !refContentAfter?.current) {
         return;
       }
-      
-      const contentAfterWidth = refContentAfter.current.offsetWidth;
-      
+
+      const contentAfterWidth = refContentAfter?.current.offsetWidth;
+
       // get code editor content dom
-      const editorCodeContent: HTMLDivElement = view.dom.querySelector(".cm-content");
+      const editorCodeContent: HTMLDivElement = view.dom.querySelector('.cm-content');
 
       // restar padding
       editorCodeContent.style.paddingRight = null;
@@ -320,37 +339,34 @@ export const useBaseCodeEditorConfig = ({
       // get current padding right
       const editorCodeContentStyles = window.getComputedStyle(editorCodeContent);
 
-      const editorCodeContentPaddingRight = parseInt(editorCodeContentStyles.getPropertyValue('padding-right'));
+      const editorCodeContentPaddingRight = parseInt(
+        editorCodeContentStyles.getPropertyValue('padding-right'),
+      );
 
-      editorCodeContent.style.paddingRight = (editorCodeContentPaddingRight + contentAfterWidth) + "px"
-
+      editorCodeContent.style.paddingRight =
+        editorCodeContentPaddingRight + contentAfterWidth + 'px';
     },
     [view, refContentAfter],
   );
 
   const setupSizes = useCallback(
     (view: EditorView) => {
-      if(!view.dom){
+      if (!view.dom) {
         return;
       }
-  
+
       // add default height
       const paddingHeight = 9;
       const lineHeight = 16;
-  
-      if(minHeightLines != null){
-        
-        view.dom.style.minHeight = ((minHeightLines * lineHeight) + (paddingHeight * 2)) + "px";
-  
-      }
-  
-      // add max height
-      if(maxHeightLines != null){
-              
-        view.dom.style.maxHeight = ((maxHeightLines * lineHeight) + paddingHeight + 1) + "px";
-  
+
+      if (minHeightLines != null) {
+        view.dom.style.minHeight = minHeightLines * lineHeight + paddingHeight * 2 + 'px';
       }
 
+      // add max height
+      if (maxHeightLines != null) {
+        view.dom.style.maxHeight = maxHeightLines * lineHeight + paddingHeight + 1 + 'px';
+      }
     },
     [view, minHeightLines, maxHeightLines],
   );
@@ -368,14 +384,12 @@ export const useBaseCodeEditorConfig = ({
   }, [loadedCount, showSuggestions]);
 
   useEffect(() => {
-
     if ((onChange || onBlur) && view) {
       setListeners(view);
     }
   }, [onChange, onBlur]);
 
   useEffect(() => {
-
     if (externalRef.current) {
       const view = setupEditor();
       setView(view);
@@ -384,4 +398,8 @@ export const useBaseCodeEditorConfig = ({
     }
   }, [externalRef, defaultValue]);
 
+  return {
+    width,
+    isInputActive,
+  };
 };
