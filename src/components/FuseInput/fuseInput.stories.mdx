@@ -1,0 +1,93 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import BaseCodeEditor from '../BaseCodeEditor/baseCodeEditor';
+import { javascript } from '@codemirror/lang-javascript';
+import FuseInput from '@components/FuseInput';
+import { FUNCTIONAL_INPUT_TYPE } from './types';
+
+<Meta title="Form/FuseInput" component={FuseInput} />
+
+# Fuse Input
+
+## Fuse Input Import
+
+```jsx
+import { FuseInput } from '@fuse-finance/ui-library';
+```
+
+## Fuse Input Simple
+
+<Canvas>
+  <FuseInput.Simple
+    onChange={console.log}
+    value="var myVar = customVars.myOpntionOne()"
+    placeholder="my placeholder"
+  />
+</Canvas>
+
+## Fuse Input Functional
+
+<Canvas>
+  <FuseInput.Functional
+    hasNumberLines={true}
+    defaultValue={
+      `
+      const myVar = customVars.myOptionOne()
+      const user = {
+        name: 'TEST'
+      }
+      2 + 2 = 4
+      `
+    }
+    onChange={console.log}
+    onBlur={console.log}
+    customCSSClass=""
+    extensions={[]}
+    plugins={[
+      {
+        name: 'customVars',
+        isModule: true,
+        decorationClass: 'code-tag code-editor-hl-formula',
+        options: {
+          'myOpntionOne()': 'customVars',
+        },
+        matchRegex: /customVars\.(myOpntionOne())\b\((.*?)\)/g,
+      },
+    ]}
+
+/>
+
+</Canvas>
+## Fuse Input Functional without numbers
+
+<Canvas>
+  <FuseInput.Functional
+    defaultValue={
+      `2 + 2 = 4
+
+      const user = "Jhon Doe"
+
+      // More content here...
+
+      const sayHelloFunc = (name) => ('Hey 👋🏻, ' + name)
+      `
+    }
+    type={FUNCTIONAL_INPUT_TYPE.FORMULA}
+    onChange={console.log}
+    onBlur={console.log}
+    customCSSClass=""
+    extensions={[]}
+    plugins={[
+      {
+        name: 'customVars',
+        isModule: true,
+        decorationClass: 'code-tag code-editor-hl-formula',
+        options: {
+          'myOpntionOne()': 'customVars',
+        },
+        matchRegex: /customVars\.(myOpntionOne())\b\((.*?)\)/g,
+      },
+    ]}
+
+/>
+
+</Canvas>

@@ -1,7 +1,7 @@
 /* eslint-disable-next-line import/named */
 import { Extension } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
-
+import { FUNCTIONAL_INPUT_TYPE } from '../FuseInput/types';
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
@@ -23,6 +23,8 @@ export type BaseCodeEditorConfig = {
   lineWrapping?: boolean;
   customContainerAttr?: Record<string, string>;
   extensions?: Extension[];
+  type?: FUNCTIONAL_INPUT_TYPE;
+  hasNumberLines?: boolean;
 };
 
 export interface IEditorPlugin {

@@ -106,42 +106,45 @@ const useLoadEditorPlugins = (plugins: IEditorPlugin[]) => {
   };
 };
 
-
 // Define the focus event handler
 function onBlurHandler(event, view, onBlur) {
   // Avoid blur when number zone is selected
-  if (event.relatedTarget && event.relatedTarget.classList.contains("cm-scroller")) {
+  if (event.relatedTarget && event.relatedTarget.classList.contains('cm-scroller')) {
     view.focus();
     return;
   }
 
-  if(onBlur){
+  if (onBlur) {
     onBlur(event, view);
   }
 }
 
-export const useBaseCodeEditorConfig = ({
-  onChange,
-  onBlur,
-  onFocus,
-  value,
-  plugins,
-  placeholder,
-  theme,
-  customCSSClass,
-  maxLines,
-  defaultValue,
-  readonly = false,
-  lineWrapping = false,
-  extensions,
-}: BaseCodeEditorConfig, externalRef) => {
-
+export const useBaseCodeEditorConfig = (
+  {
+    onChange,
+    onBlur,
+    onFocus,
+    value,
+    plugins,
+    placeholder,
+    theme,
+    customCSSClass,
+    maxLines,
+    defaultValue,
+    readonly = false,
+    lineWrapping = false,
+    extensions,
+  }: BaseCodeEditorConfig,
+  externalRef,
+) => {
   const [view, setView] = useState<any>();
   const { loadedCount, showSuggestions } = useLoadEditorPlugins(plugins);
+  const [width, setWidth] = useState('');
+  const [isInputActive, setIsInputActive] = useState(false);
 
   const setupEditor = useCallback(() => {
     const view = new EditorView({
-      parent: externalRef.current
+      parent: externalRef.current,
     });
 
     setupBaseExtensions(view);
@@ -163,10 +166,17 @@ export const useBaseCodeEditorConfig = ({
   const setListeners = useCallback(
     (view: EditorView) => {
       const extension = EditorView.updateListener.of((vu: ViewUpdate) => {
+        // Set initial height in the editor, because when the editor has content larger than the minimum size, it is displayed in full instead of showing only 3 lines
+        view.dom.classList.add('h-10');
+
         const content = vu.state.doc.toString();
+        const editorWidth = (vu.view as any)?.viewState?.editorWidth;
+
+        if (editorWidth) setWidth(`${editorWidth}px`);
+
         if (onChange && vu.docChanged) {
           onChange(content);
-        }      
+        }
       });
 
       view.dispatch({
@@ -190,13 +200,24 @@ export const useBaseCodeEditorConfig = ({
       // Dom event handlers
       const extensionEventHandlers = EditorView.domEventHandlers({
         blur: (event, view) => {
-           onBlurHandler(event, view, onBlur);
+          onBlurHandler(event, view, onBlur);
         },
         focus: (event, view) => {
-          if(onFocus){
-            onFocus(event, view); 
+          if (onFocus) {
+            onFocus(event, view);
           }
-        }
+        },
+        focusin: () => {
+          setIsInputActive(true);
+        },
+        focusout: () => {
+          setIsInputActive(false);
+          // Add animation when 'close' the input (on)
+          view.dom.classList.add('animationFuseInput');
+          // Set the default style
+          view.dom.style.setProperty('height', '60px', 'important');
+          view.dom.style.setProperty('width', '100%', 'important');
+        },
       });
 
       // Define base extensions
@@ -252,7 +273,6 @@ export const useBaseCodeEditorConfig = ({
 
   const setupPluginsExtensions = useCallback(
     (view: EditorView) => {
-
       const extensions = [];
 
       plugins.forEach((p) => {
@@ -317,4 +337,8 @@ export const useBaseCodeEditorConfig = ({
     }
   }, [externalRef, defaultValue]);
 
+  return {
+    width,
+    isInputActive,
+  };
 };
