@@ -11,8 +11,6 @@
 .editor-code-globla-style.cm-editor .cm-line{
     padding-left: 0;
     @apply text-xs;
-    display: flex;
-
 }
 
 .editor-code-globla-style.cm-editor .cm-content{
@@ -24,6 +22,38 @@
 
 .editor-code-globla-style.cm-focused{
     border: 1px solid theme('colors.blue.600');
+}
+
+/* resizing above elements */
+.editor-code-globla-style.cm-editor.resizing-above-elements.cm-focused{
+    resize: block;
+    position: absolute !important;
+    z-index: 3 !important;
+    border-radius: 6px !important;
+}
+
+.editor-code-globla-style.cm-editor.resizing-above-elements.cm-focused .cm-content{
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+}
+
+.editor-code-globla-style.cm-editor.resizing-above-elements:not(.cm-focused){
+    height: auto !important;
+}
+
+.editor-code-globla-style.cm-editor.resizing-above-elements:not(.cm-focused) .cm-scroller{
+    overflow: hidden !important;
+}
+
+.editor-code-globla-style.cm-editor.resizing-above-elements:not(.cm-focused) .cm-content{
+    white-space: nowrap;
+    overflow: hidden;
+    flex-basis: 0 !important;
+}
+
+.editor-code-globla-style.cm-editor.resizing-above-elements:not(.cm-focused) .cm-content .cm-line{
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* number line */
@@ -85,4 +115,26 @@
 .ant-space-compact > *:first-child .editor-code-globla-style.cm-editor{
     border-start-end-radius: 0;
     border-end-end-radius: 0;    
+}
+
+/* content after */
+.editor-code-content-after{
+    width: min-content;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+}
+
+.editor-code-content-after.editor-code-content-after-top{
+    top: 0;
+}
+
+.editor-code-content-after.editor-code-content-after-center{
+    position: absolute;
+    top: 50%; 
+    transform: translate(0, -50%);
+}
+
+.editor-code-content-after.editor-code-content-after-bottom{
+    bottom: 0;
 }

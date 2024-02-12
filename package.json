@@ -1,6 +1,6 @@
 {
   "name": "@fuse-finance/ui-library",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "author": "FuseFinance",
   "private": false,
   "type": "module",
@@ -65,7 +65,7 @@
     "testSilent": "jest __test__ --silent",
     "test:watch": "jest --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"     
+    "build-storybook": "storybook build"
   },
   "browserslist": {
     "production": [
