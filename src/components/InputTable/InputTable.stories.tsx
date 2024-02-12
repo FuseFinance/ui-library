@@ -86,7 +86,6 @@ InputTable.args = {
     {
       dataIndex: 'inputInput',
       key: 'inputInput',
-      width: '40%',
       className: 'input-type-cell',
       render: (data) => (
         <Input defaultValue={data.defaultValue} placeholder={data.placeholder} />
@@ -96,7 +95,6 @@ InputTable.args = {
       dataIndex: 'inputCode',
       key: 'inputCode',
       className: 'input-type-cell',
-      width: '40%',
       render: (data) => (
         <BaseCodeEditor maxLines={1} defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
       ),
@@ -105,7 +103,6 @@ InputTable.args = {
       dataIndex: 'inputCodeWithText',
       key: 'inputCodeWithText',
       className: 'input-type-cell',
-      width: '20%',
       render: (data) => (
         <BaseCodeEditor maxLines={1} defaultValue={data.defaultValue} onChange={console.log} customCSSClass="" placeholder={data.placeholder} plugins={[{ "name": "customVars", "isModule": true, "decorationClass": "code-tag code-editor-hl-formula", "options": { "myOpntionOne()": "customVars" }, "matchRegex": /customVars\.(myOpntionOne())\b\((.*?)\)/g }]} />
       ),

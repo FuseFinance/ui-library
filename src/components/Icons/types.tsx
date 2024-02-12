@@ -63,7 +63,9 @@ export enum IconList {
   Upload = 'Upload',
   MenuVertiacal = 'MenuVertiacal',
   UpArrow = 'UpArrow',
-  DownArrow = 'DownArrow'
+  DownArrow = 'DownArrow',
+  LeftInsertArrow = 'LeftInsertArrow',
+  RightInsertArrow = 'RightInsertArrow' 
 }
 
 export interface IProps {
