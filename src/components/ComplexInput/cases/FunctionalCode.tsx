@@ -1,12 +1,13 @@
 import { lineNumbers, highlightActiveLineGutter } from '@codemirror/view';
 import { BaseCodeEditorConfig, IProps } from '../../BaseCodeEditor/types';
 import { useBaseCodeEditorConfig } from '../../BaseCodeEditor/hooks';
-import { ForwardedRef, forwardRef, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import baseTheme from '../../BaseCodeEditor/baseTheme';
 import { javascript } from '@codemirror/lang-javascript';
 import { TooltipFuse } from '../Tooltip';
 import { getLabelByType } from './utils';
 import { FUNCTIONAL_INPUT_TYPE } from '../types';
+import { ComplexInputIds } from '@/src/constants/appIDS';
 
 export const FunctionalCode = forwardRef(
   (
@@ -29,10 +30,10 @@ export const FunctionalCode = forwardRef(
       hasNumberLines,
       type = FUNCTIONAL_INPUT_TYPE.CODE,
     }: IProps,
-    parentRef: ForwardedRef<HTMLDivElement>,
+    parentRef: React.MutableRefObject<HTMLDivElement>,
   ) => {
     const internalRef = useRef();
-    const ref = parentRef || internalRef;
+    const ref: React.MutableRefObject<HTMLDivElement> = parentRef || internalRef;
 
     const localExtensions = [...extensions, javascript(), highlightActiveLineGutter()];
 
@@ -59,7 +60,7 @@ export const FunctionalCode = forwardRef(
     return (
       <div>
         <div
-          id="functional-input"
+          data-cy={ComplexInputIds.FunctionalCodeInputBody}
           ref={ref}
           className={` ${containerCSSClass || ''}`}
           {...customContainerAttr}

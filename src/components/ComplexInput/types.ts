@@ -1,8 +1,17 @@
 /* eslint-disable no-unused-vars */
 
+export type ComplexInputType = {
+  Simple: React.FC;
+  FunctionalCode: React.FC;
+};
+
 export enum SIMPLE_INPUT_TYPE {
   STRING = 'STRING',
   NUMBER = 'NUMBER',
+}
+export enum INPUT_TYPES {
+  SIMPLE = 'SIMPLE',
+  FUNCTIONAL = 'FUNCTIONAL',
 }
 
 export enum FUNCTIONAL_INPUT_TYPE {

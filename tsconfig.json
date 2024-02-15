@@ -16,7 +16,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "vite-plugin-svgr/client"],
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "@types/jest",
+      "jest",
+      "@testing-library/jest-dom",
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
@@ -24,16 +30,13 @@
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@types_fuse/*": ["./src/types/*"],
-      "@tests/*": ["./__tests__/*"]
-    }
+      "@tests/*": ["./__tests__/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@app_ids": ["./src/constants/appIDS.ts"],
+      "@testUtils": ["./__test__/utils/testUtils.tsx"],
+    },
   },
 
   "include": ["src", "**/*.test.tsx", "__mocks__/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.tsx",
-    "jest.config.js",
-    "__mocks__/generalMocks.ts"
-  ]
+  "exclude": ["node_modules", "jest.config.js", "__mocks__/generalMocks.ts"],
 }

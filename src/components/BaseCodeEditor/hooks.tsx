@@ -138,7 +138,7 @@ export const useBaseCodeEditorConfig = (
     maxHeightLines,
   }: BaseCodeEditorConfig,
   externalRef: React.MutableRefObject<HTMLDivElement>,
-  refContentAfter: React.MutableRefObject<HTMLDivElement>,
+  refContentAfter?: React.MutableRefObject<HTMLDivElement>,
 ) => {
   const [countReloadForBlue, setCountReloadForBlue] = useState<number>(0);
   const [view, setView] = useState<any>();

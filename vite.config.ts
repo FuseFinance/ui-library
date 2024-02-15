@@ -6,9 +6,8 @@ import react from '@vitejs/plugin-react';
 import svgrPlugin from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import checker from 'vite-plugin-checker';
-import { peerDependencies } from "./package.json";
-import dts from "vite-plugin-dts";
-
+import { peerDependencies } from './package.json';
+import dts from 'vite-plugin-dts';
 
 function importCss(): Plugin {
   return {
@@ -25,7 +24,7 @@ function importCss(): Plugin {
           }
         }
       }
-    }
+    },
   };
 }
 
@@ -39,6 +38,9 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, './src/styles'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@types_fuse': path.resolve(__dirname, './src/types'),
+      '@constants': path.resolve(__dirname, './src/constants'),
+      '@app_ids': path.resolve(__dirname, './src/constants/appIDS.ts'),
+      '@testUtils': path.resolve(__dirname, './__test__/utils/testUtils.tsx'),
     },
   },
   plugins: [
@@ -48,7 +50,7 @@ export default defineConfig({
       overlay: { initialIsOpen: false },
       // typescript: true,
       eslint: {
-        lintCommand: "eslint \"{src,test}/**/*.ts\" \"{src,test}/**/!(*stories).tsx\" --fix",
+        lintCommand: 'eslint "{src,test}/**/*.ts" "{src,test}/**/!(*stories).tsx" --fix',
         dev: {
           logLevel: ['error'],
         },
@@ -57,18 +59,18 @@ export default defineConfig({
     viteTsconfigPaths(),
     svgrPlugin(),
     importCss(),
-    dts()
+    dts(),
   ],
   build: {
     lib: {
-      entry: "./src/index.ts", // Specifies the entry point for building the library.
-      name: "vite-react-ts-button", // Sets the name of the generated library.
+      entry: './src/index.ts', // Specifies the entry point for building the library.
+      name: 'vite-react-ts-button', // Sets the name of the generated library.
       fileName: (format) => `index.${format}.js`, // Generates the output file name based on the format.
-      formats: ["cjs", "es"], // Specifies the output formats (CommonJS and ES modules).
+      formats: ['cjs', 'es'], // Specifies the output formats (CommonJS and ES modules).
     },
     rollupOptions: {
-      external: [...Object.keys(peerDependencies)], // Defines external dependencies for Rollup bundling.   
-    },    
+      external: [...Object.keys(peerDependencies)], // Defines external dependencies for Rollup bundling.
+    },
     sourcemap: true, // Generates source maps for debugging.
     emptyOutDir: true, // Clears the output directory before building.
   },

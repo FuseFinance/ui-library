@@ -4,6 +4,7 @@ import { SIMPLE_INPUT_TYPE, SimpleInputCaseProps } from '../types';
 import { TooltipFuse } from '../Tooltip';
 import { getLabelByType } from './utils';
 import { colors } from '@/src/styles';
+import { ComplexInputIds } from '@app_ids';
 
 const { TextArea } = Input;
 
@@ -21,6 +22,7 @@ export const Simple = ({
   return (
     <div className="!h-9">
       <TextArea
+        data-cy={ComplexInputIds.SimpleInputBody}
         className="!h-full !overflow-hidden"
         value={value}
         onResize={(e) => {
@@ -28,7 +30,7 @@ export const Simple = ({
           setInputWidth(newWidth);
         }}
         onChange={(e) => {
-          if (onChange) {
+          if (onChange && !readonly) {
             onChange(e.target.value);
           }
         }}
