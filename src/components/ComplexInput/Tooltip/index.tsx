@@ -1,12 +1,18 @@
 import { colors } from '@/src/styles';
 import { TooltipProps } from './types';
+import { DefaultComponentIds } from '@/src/constants/appIDS';
 
-export const TooltipFuse = ({ type = '', width = '100%', active = false }: TooltipProps) => {
+export const TooltipFuse = ({
+  type = '',
+  width = '100%',
+  active = false,
+  testId = DefaultComponentIds.fuseTooltipContainer,
+}: TooltipProps) => {
   if (!active) return;
 
   return (
     <div
-      id="tooltip-fuse"
+      data-cy={testId}
       className="mt-[1px] px-1 py-[3px] rounded text-xs font-medium"
       style={{
         width,

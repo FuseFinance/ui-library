@@ -1,11 +1,7 @@
 import React from 'react';
 import { Simple } from './cases/Simple';
 import { FunctionalCode } from './cases/FunctionalCode';
-
-type ComplexInputType = {
-  Simple: React.FC;
-  FunctionalCode: React.FC;
-};
+import { ComplexInputType } from './types';
 
 const ComplexInput: React.FC & ComplexInputType = () => {
   throw new Error(
