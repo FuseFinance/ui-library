@@ -1,1 +1,1 @@
-export { default as InteractiveTable  } from './InteractiveTable';
+export { default as InteractiveTable } from './InteractiveTable';

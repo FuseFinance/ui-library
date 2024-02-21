@@ -62,6 +62,8 @@ import { ReactComponent as Upload } from './Upload.svg';
 import { ReactComponent as MenuVertiacal } from './MenuVertiacal.svg';
 import { ReactComponent as UpArrow } from './UpArrow.svg';
 import { ReactComponent as DownArrow } from './DownArrow.svg';
+import { ReactComponent as LeftInsertArrow } from './LeftInsertArrow.svg';
+import { ReactComponent as RightInsertArrow } from './RightInsertArrow.svg';
 
 import { IProps } from './types';
 import { useState } from 'react';
@@ -130,7 +132,9 @@ const icons = {
   Upload,
   MenuVertiacal,
   UpArrow,
-  DownArrow  
+  DownArrow,
+  LeftInsertArrow,
+  RightInsertArrow  
 };
 
 const Icon = ({

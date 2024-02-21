@@ -1,258 +1,88 @@
-import { Table, Dropdown } from 'antd';
-import {TypeInputTableSimple} from './type';
-import { useState, useEffect, useRef } from 'react';
-import './InteractiveTable.css';
-import color from '@/src/styles/colorsGlobal';
-import Icon from '@/src/components/Icons';
-import { IconList } from '@/src/components/Icons/types';
-import { handleInsertTopExport, handleInsertDownExport, handleDuplicateExport, handleRemoveExport } from './handle'
+import { forwardRef, ForwardedRef } from 'react';
 
-const InteractiveTable = ({
-    initTableData,
-    initTableColumns,
-    defaultAddInRow,
-    onAddRow,
-    onRemoveRow,
-    customAttrAddRow,
-    canEdit = true,
-    canAddRows = false,
-    canAddColumn = false
-} : TypeInputTableSimple ) => {
+import { TypeInputTableSimple } from './type';
+import InteractiveTableControlled from './InteractiveTableControlled';
+import InteractiveTableUncontrolled from './InteractiveTableUncontrolled';
 
-    // use state
-    const [tableData, setTableData] = useState<(Record<string, any>)[]>()
-    const [tableColumns, setTableColumns] = useState<(Record<string, any>)[]>()
-    const [hoverTalbe, setHoverTable] = useState<boolean>(null)
-    const [activeOptionLeft, setActiveOptionLeft] = useState<boolean>(false)
-    const [idOptionRow, setIdOptionRow] = useState<number>(null)
-
-    // content ref 
-    const contentRef = useRef<HTMLDivElement>(null);
-    const optionTop = useRef<HTMLDivElement>(null);
-    const optionLeft = useRef<HTMLDivElement>(null);
-    const miRef = useRef<number>(null);
-
-    // chagen positon of option cell
-    const chagenOptionCellPositon = ({idRow} : {idRow: number}) => {
-
-        // get data cell
-        const rowElement = contentRef.current.querySelector(`.ant-table-row[data-row-key="${idRow}"]`);
-        
-        const rowHeight = (rowElement as HTMLElement).offsetHeight;
-                
-        // get table position
-        const rectTable = contentRef.current.getBoundingClientRect();
-        const docXTable = rectTable.left;
-        const docYTable = rectTable.top;
-
-        // get cell position
-        const rectCell = rowElement.getBoundingClientRect();
-        const docXCellInTable = rectCell.left - docXTable;
-        const docYCellInTable = rectCell.top - docYTable;
-
-        // change coordinates
-        if(
-            optionTop.current
-        ){
-            optionTop.current.style.top = docYTable + "px";
-            optionTop.current.style.left = docXCellInTable + "px";
-        }
-
-        if(
-            optionLeft.current    
-        ){
-            optionLeft.current.style.top = (docYCellInTable) + "px";
-            optionLeft.current.style.left = "0px";
-
-            const optionLine = optionLeft.current.querySelector(".uid-option-line") as HTMLDivElement; 
-            optionLine.style.height = rowHeight + "px";
-
-            const dropdownContent = optionLeft.current.querySelector(".uid-dropdown-content-in-table-option") as HTMLDivElement; 
-            dropdownContent.style.top = ((rowHeight / 2) - 12) + "px";
-        }
-
-        miRef.current = idRow;
-        setIdOptionRow(idRow)
-
+const InteractiveTable = forwardRef(
+  (props: TypeInputTableSimple, ref: ForwardedRef<HTMLDivElement>) => {
+    const { value } = props;
+    if (value != undefined) {
+      return <InteractiveTableUncontrolled ref={ref} {...props} />;
     }
-    
-    // resize observer for change size in options of cell
-    const resizeObserver = new ResizeObserver(() => {
-        const dataIsActive = contentRef.current.querySelector(".uid-table-option-left").getAttribute("data-is-active");
-        
-        if(!dataIsActive || dataIsActive === "false"){
-            return
-        }        
-        chagenOptionCellPositon({idRow: miRef.current})
-    });
+    return <InteractiveTableControlled ref={ref} {...props} />;
+  },
+);
 
-    // table option events
-    const onCell = (rowData) => {
+InteractiveTable.displayName = 'InteractiveTable';
 
-        const rowElement = contentRef.current.querySelectorAll(`.ant-table-row[data-row-key="${rowData.key}"] .ant-table-cell`);
-        
-        rowElement.forEach(element => {
+export default InteractiveTable;
 
-            const activeResizeObserver = element.getAttribute('uid-active-resize-observer');
+/* <InteractiveTable cellToAdd={{render, id, id, data}} /> */
 
-            if(activeResizeObserver || activeResizeObserver === "false"){
-                return;
-            }
+// const data = [
+//   { name: 'name1', age: '1', uuui1: ''}, Row
+//   { name: 'name2', age: '1', uuui1: ''},
+//   { name: 'name3', age: '1', uuui1: '', disabled},
+// ]
 
-            element.setAttribute('uid-active-resize-observer', 'true');
+// columns = [
+//   {
+//     label: 'name',
+//     render: (props: R, context) => { props.name}
+//   },
+//   {
+//     label: 'age',
+//     render: (props: R, context) => { props.age}
+//   },
+// ]
 
-            resizeObserver.observe(element);            
-        });
+// // add rows
+// const data = [
+//   { name: '', age: '',  },
+//   { name: 'name1', age: '1' },
+//   { name: 'name2', age: '1' },
+//   { name: 'name3', age: '1' },
+//   { name: '', age: '' },
+//   { name: '', age: '' },
+// ]
 
-        return {
-            onMouseLeave: () => {
-                setHoverTable(false)
-            },
-            onMouseEnter: () => { 
-                setHoverTable(true)
+// // add cols
 
-                const dataIsActive = contentRef.current.querySelector(".uid-table-option-left").getAttribute("data-is-active");
-        
-                if(dataIsActive && dataIsActive === "true"){
-                    return
-                }
+// const data = [
+//   { name: 'name1', age: '1' meta: { uuid: ''}},
+//   { name: 'name2', age: '1' meta: { uuid: ''}},
+//   { name: 'name3', age: '1' meta: { uuid: ''}},
+// ]
 
-                chagenOptionCellPositon({idRow : rowData.key})
+// // shallow
+// columns2 = [...columns]
+// [
+//   {
+//     label: 'name',
+//     render: (props: R, context) => { props.name}
+//   },
+//   {
+//     label: 'age',
+//     render: (props: R, context) => { props.age}
+//   },
+//   {
+//     objectKey:uui
+//     label: '',
+//     render: (props: R, context) => { return props[uui]}
+//   },
+// ]
 
-            },
-        };
-    }
-
-    // Add trash
-    useEffect(() => {
-
-        const newTableColumns = [...initTableColumns];
-        const newTableData = [...initTableData];
-
-        newTableColumns.forEach(element => {
-            element.onCell = onCell;
-        });
-
-        setTableColumns(newTableColumns);
-        setTableData(newTableData);
-
-
-    }, []);
-
-
-    // handle
-    const handleDropdownLeft = (isActive) => {
-
-        setActiveOptionLeft(isActive)
-
-    } 
-  
-    // handle dropdown
-    const handleInsertTop = (currentRowId, tableData, defaultAddInRow) => {
-        const [newTableData, newRow] = handleInsertTopExport(currentRowId, tableData, defaultAddInRow);
-
-        setTableData(newTableData);
-
-        if(onAddRow){
-            onAddRow(newTableData, newRow);
-        }        
-    }
-
-    const handleInsertDown = (currentRowId, tableData, defaultAddInRow) => {
-        
-        const [newTableData, newRow] = handleInsertDownExport(currentRowId, tableData, defaultAddInRow);
-
-        setTableData(newTableData);
-
-        if(onAddRow){
-            onAddRow(newTableData, newRow);
-        }        
-    }
-
-    const handleDuplicate = (currentRowId, tableData, tableColumns, contentRef) => {
-
-        const [newTableData, newRow] =  handleDuplicateExport(currentRowId, tableData, tableColumns, contentRef)
-
-        setTableData(newTableData);
-
-        if(onAddRow){
-            onAddRow(newTableData, newRow);
-        }
-    }
-
-    const handleRemove = (idOptionRow, tableData) => {
-
-        if(tableData.length > 1){
-            const newTableData = handleRemoveExport(idOptionRow, tableData);
-
-            setTableData(newTableData);
-
-            if(onRemoveRow){
-                onRemoveRow(newTableData)
-            }
-        }
-    }
-
-    // option dropdown
-    const items = [
-        {
-            key: '1',
-            label: 'Insert up',
-            onClick: () => handleInsertTop(idOptionRow, tableData, defaultAddInRow),
-            icon: <Icon icon={IconList.UpArrow} cursor="pointer" width="20px" height="20px" onClick={console.log} /> ,
-        },
-        {
-            key: '2',
-            label: 'Insert down',
-            onClick: () => handleInsertDown(idOptionRow, tableData, defaultAddInRow),
-            icon: <Icon icon={IconList.DownArrow} cursor="pointer" width="20px" height="20px" onClick={console.log} /> ,
-        },
-        {
-            key: '3',
-            label: 'Duplicate',
-            onClick: () => handleDuplicate(idOptionRow, tableData, tableColumns, contentRef),
-            icon: <Icon icon={IconList.Copy} cursor="pointer" width="20px" height="15px" onClick={console.log} /> ,
-        },
-        {
-            key: '4',
-            label: 'Delete',
-            onClick: () => handleRemove(idOptionRow, tableData),
-            icon: <Icon icon={IconList.Trash} cursor="pointer" width="20px" height="16px" onClick={console.log} /> ,
-        }        
-    ];
-
-    return (<div ref={contentRef} className={`uid-interactive-table ${hoverTalbe && "hover-table"}` }>
-        <Table 
-        showHeader={false} pagination={false} dataSource={tableData} columns={tableColumns}/>
-        {canAddColumn && <div ref={optionTop} data-is-active="false" className='uid-table-option uid-table-option-top'>
-            a (canAddColumn)
-        </div>}
-        {canAddRows && <div ref={optionLeft} data-is-active={activeOptionLeft} className={`uid-table-option uid-table-option-left`}>
-            <div className='uid-dropdown-content-in-table-option z-10'>
-                <Dropdown
-                    trigger={['click']}
-                    menu={{
-                    items,
-                    }}
-                    onOpenChange={handleDropdownLeft}
-                    placement={"rightTop" as any}
-                >
-                    <div className='bg-gray-300 rounded'>
-                        <Icon icon={IconList.MenuVertiacal} cursor="pointer" width="13px" height="1.4rem" />
-                    </div>
-                </Dropdown> 
-            </div>
-            <div className='uid-option-line'></div>
-        </div>
-        }   
-        {
-        canEdit && canAddRows && <div className='add-bottom-row absolute w-full pt-0.9 pb-1'>
-            <div className='bg-gray-200 w-full rounded flex justify-center p-0.9' role='button' onKeyDown={() => {handleInsertDown(tableData[tableData.length - 1].key, tableData, defaultAddInRow)}} tabIndex={0} onClick={() => {handleInsertDown(tableData[tableData.length - 1].key, tableData, defaultAddInRow)}} {...customAttrAddRow}> 
-                <Icon icon={IconList.Plus} fill={color.gray[400]} cursor="pointer" width="8px" height="8px" />
-            </div>
-        </div>
-        }
-    </div>);
-}
-
-export default InteractiveTable; 
+// <InteractiveTable
+//   value={data}
+//   onChnage
+//   xxxxxxxxxxxxx={() => {}}
+//   oRemove
+//   onAdd
+//   onAddRow
+//   onAddColumn
+//   onRemoveRow
+//   onRemoveColumn
+//   colums={columns}
+//   edit
+// />
